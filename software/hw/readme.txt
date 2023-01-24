@@ -1,0 +1,1 @@
+This folder contains any hardware components that are used to support provided software.
