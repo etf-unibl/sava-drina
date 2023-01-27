@@ -1,0 +1,1 @@
+This folder shall contain the testbench files for all the design units (e.g., module_a_tb.vhd, module_b_tb.vhd, etc.).
