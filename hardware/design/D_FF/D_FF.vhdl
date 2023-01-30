@@ -49,7 +49,7 @@ architecture beh of D_FF is
 begin
   process(clk_i,reset_i)
   begin
-    if(reset_i ='1') then
+    if(reset_i = '1') then
       Q_o <= '0';
     elsif(rising_edge(clk_i)) then
       Q_o <= D_i;
