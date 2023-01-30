@@ -35,8 +35,17 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+
+-------------------------------------------------------
+--!@file
+--!@brief D_FF
+-------------------------------------------------------
+
 library ieee;
 use ieee.STD_LOGIC_1164.all;
+
+--!@brief D_FF entity
+--!@details entity with input and output ports
 
 entity D_FF is
   port(
@@ -45,7 +54,13 @@ entity D_FF is
        D_i     : in std_logic;
        Q_o     : out std_logic);
 end D_FF;
+
+--!@details architecture of DFF
+
 architecture beh of D_FF is
+
+--!@details process depends on clk and reset
+
 begin
   process(clk_i,reset_i)
   begin
