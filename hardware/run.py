@@ -35,8 +35,4 @@ tb_lib = VU.add_library("tb_lib")
 # add testbench source files to tb_lib
 tb_lib.add_source_files([TEST_PATH / "*.vhdl"])
 
-VU.set_sim_option("modelsim.vsim_flags", ["+notimingchecks"])
-for tb in tb_lib.get_test_benches():
-  tb.set_sim_option("modelsim.init_file.gui", str(ROOT) + "/waves/" + tb.name + "_wave.do")
-
 VU.main()
