@@ -39,7 +39,7 @@ library ieee;
 use ieee.STD_LOGIC_1164.all;
 
 entity D_FF is
-  port( 
+  port(
        clk_i   : in std_logic;
        reset_i : in std_logic;
        D_i     : in std_logic;
