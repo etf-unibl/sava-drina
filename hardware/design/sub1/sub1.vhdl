@@ -73,5 +73,3 @@ begin
 
 	
 end beh_arch;
-
-
