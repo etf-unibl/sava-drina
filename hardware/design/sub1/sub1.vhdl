@@ -38,8 +38,8 @@
 
 
 -------------------------------------------------------
---!@file
---!@brief sub1
+--!@file 
+--!@brief sub1 
 -------------------------------------------------------
 
 
@@ -47,10 +47,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---!@brief sub1 entity
---!@details This entity represent artimetic logic unit
---!@details Input signals are a_i , b_i, c_i ( control signal)
---!@details output signal y_o
+--!@brief sub1 entity 
+--!@details This entity represent artimetic logic unit 
+--!@details Input signals are a_i , b_i, c_i ( control signal) 
+--!@details output signal y_o 
 
 entity sub1 is
   port
@@ -61,10 +61,10 @@ entity sub1 is
     y_o : out std_logic_vector (15 downto 0)); --!Output data
 end sub1;
 
---!@brief  Architecture description of sub1
---!@details This architecture describe aritmetic logic unit
---!@details With control input we choose witch operation we want(+,-, increment. and decrement.)
---!@details This operation is done on input vectors a_i and b_i
+--!@brief  Architecture description of sub1 
+--!@details This architecture describe aritmetic logic unit 
+--!@details With control input we choose witch operation we want(+,-, increment. and decrement.) 
+--!@details This operation is done on input vectors a_i and b_i 
 
 architecture beh_arch of sub1 is
 
