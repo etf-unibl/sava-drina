@@ -52,7 +52,6 @@ entity sub1 is
     b_i : in  std_logic_vector (15 downto 0);
     c_i : in std_logic_vector(1 downto 0);
     y_o : out std_logic_vector (15 downto 0));
-  
 end sub1;
 
 architecture beh_arch of sub1 is
