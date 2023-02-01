@@ -10,7 +10,7 @@ entity test_DFF is
     generic (runner_cfg : STRING := runner_cfg_default);
 end entity;
 
-architecture behavior OF test_DFF IS
+architecture beh of test_DFF is
 
 component D_FF
   port (
