@@ -57,8 +57,10 @@ main : process
                   wait for 2 ns;
                   check(D_i_tst = '1');
                   info("na ulazu je dovedena 1");
+                  wait for 2 ns;
                   check(Q_o_tst = NOT D_i_tst);
                   info("Dok ne dodje do aktivne ivice CLK, DFF cuva prethodno stanje na izlazu");
+                  wait for 200 ns;
 
         elsif run("input") then
           start_stimuli <= true;
@@ -73,6 +75,7 @@ main : process
               wait for 2 ns;
               check(Q_o_tst = D_i_tst);
               info("Upisana 1");
+              wait for 200 ns;
 
         elsif run("reset") then
           start_stimuli <= true;
@@ -82,10 +85,12 @@ main : process
               wait for 2 ns;
               check(Q_o_tst = '1');
               info("Izlaz je na 1, slijedi provjera reseta");
+              wait for 2 ns;
               reset_i_tst <= '1';
               wait for 2 ns;
               check(Q_o_tst = '0');
               info("Test za reset prolazi");
+              wait for 200 ns;
         end if;
 end loop;
 test_runner_cleanup(runner);
