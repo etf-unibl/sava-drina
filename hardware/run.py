@@ -28,9 +28,9 @@ VU.enable_location_preprocessing()
 
 
 
-VU.add_library("design_lib").add_source_files(DUT_PATH / "*.vhd")
+VU.add_library("design_lib").add_source_files(DUT_PATH/"*.vhd")
     
-VU.add_library("tb_lib").add_source_files(TEST_PATH / "*.vhd")
+VU.add_library("tb_lib").add_source_files(TEST_PATH/"*.vhd")
 
 
 VU.main()
