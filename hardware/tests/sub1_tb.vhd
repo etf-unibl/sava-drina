@@ -107,7 +107,7 @@ begin
 	   test1_in <= "0000000000000010";
 	   test2_in <= "0000000000000001";
          end if;
-         wait for 10ns;
+         wait for 10 ns;
 	 stimuli_done <= true;
   
   end process stimuli_generator;
