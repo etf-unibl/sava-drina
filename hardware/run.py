@@ -30,7 +30,7 @@ VU.enable_location_preprocessing()
 design_lib = VU.add_library("design_lib")
 # add design source files to design_lib
 design_lib.add_source_files(ROOT / "*.vhd")
-    
+
 # create testbench library
 tb_lib = VU.add_library("tb_lib")
 # add testbench source files to tb_lib
