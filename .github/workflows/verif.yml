@@ -33,11 +33,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Print working dir
-        run: echo $PWD
     
-#      - name: Run VUnit tests
-#        uses: VUnit/vunit_action@master
-#        with:
-#          cmd: hardware/run.py
+      - name: Run VUnit tests
+        uses: VUnit/vunit_action@master
+        with:
+          cmd: hardware/run.py
