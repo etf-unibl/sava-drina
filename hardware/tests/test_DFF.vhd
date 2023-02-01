@@ -24,7 +24,7 @@ component D_FF
 signal clk_i_tst     : std_logic := '0';
 signal reset_i_tst   : std_logic := '0';
 signal D_i_tst       : std_logic := '0';
-morsignal Q_o_tst    : std_logic;
+signal Q_o_tst    : std_logic;
 signal start_stimuli : boolean := false;
 
 begin
