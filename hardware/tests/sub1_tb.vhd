@@ -85,27 +85,26 @@ begin
   stimuli_generator: process is
   begin
        	 wait until start_stimuli;
-	 if running_test_case = "test_incrementation" then
-	   info("Applaying stimuli");
-	   ctrl_in <= "10";
-	   test1_in <= "0000000000000001";
-	   test2_in <= "0000000000000001";
-	 elsif running_test_case = "test_decrementation" then
+	 if running_test_case <= "test_addition" then
            info("Applaying stimuli");
-	   ctrl_in <= "11";
+	   ctrl_in <= "00";
 	   test1_in <= "0000000000000001";
 	   test2_in <= "0000000000000001";
 	 elsif running_test_case = "test_substraction" then
            info("Applaying stimuli");
 	   ctrl_in <= "01";
-	   test1_in <= "0000000000000011";
-	   test2_in <= "0000000000000001";
-
-         elsif running_test_case <= "test_addition" then
-           info("Applaying stimuli");
-	   ctrl_in <= "00";
 	   test1_in <= "0000000000000010";
-	   test2_in <= "0000000000000001";
+	   test2_in <= "0000000000000010";
+	 elsif running_test_case = "test_incrementation" then
+	   info("Applaying stimuli");
+	   ctrl_in <= "10";
+	   test1_in <= "0000000000000011";
+	   test2_in <= "0000000000000011";
+	 elsif running_test_case = "test_decrementation" then
+           info("Applaying stimuli");
+	   ctrl_in <= "11";
+	   test1_in <= "0000000000000100";
+	   test2_in <= "0000000000000100";
          end if;
          wait for 10 ns;
 	 stimuli_done <= true;
