@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent
 DUT_PATH = ROOT / "design"/"*"
 
 # Sources path for TB
-TEST_PATH = ROOT / "testbench"/"*"/"testbench"
+TEST_PATH = ROOT / "design"/"*"/"testbench"
 
 # create Vunit instance
 VU = VUnit.from_argv()
