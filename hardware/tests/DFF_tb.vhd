@@ -6,11 +6,11 @@ USE IEEE.NUMERIC_STD.ALL;
 library vunit_lib;
 context vunit_lib.vunit_context;
 
-entity test_DFF is
+entity DFF_tb is
     generic (runner_cfg : STRING := runner_cfg_default);
 end entity;
 
-architecture beh of test_DFF is
+architecture beh of DFF_tb is
 
 component D_FF
   port (
