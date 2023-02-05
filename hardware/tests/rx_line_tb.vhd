@@ -67,33 +67,31 @@ begin
 	
 	  if("left_channel") then
 	    start_simuli => true;
-		 sd_tst <= "0000000000000000";
-		 ws_tst <= '0';
+            sd_tst <= "0000000000000000";
+	    ws_tst <= '0';
 		 
-		  wait until rising_edge(sck_tst);
-		   wait for 2 ns;
-			 info(" Provide data on left channel");
-			 sd_tst <= "0000000000000111";
-			 ws_tst <= '0';
-			   wait for 2 ns;
-				  check( ws_tst = '0')
-				  check( wsd_test_l = sd_tst, " Error, data not present on left output buffer")
-					  wait for 100 ns;
+            wait until rising_edge(sck_tst);
+            wait for 2 ns;
+            info(" Provide data on left channel");
+	    sd_tst <= "0000000000000111";
+	    ws_tst <= '0';
+            wait for 2 ns;
+            check( ws_tst = '0')
+	    check( wsd_test_l = sd_tst, " Error, data not present on left output buffer")
+	    wait for 100 ns;
 		  
-		  elsif ("right_channel") then
-		  start_simuli => true;
-		  info(" Provide data on right channel");
-		  sd_tst <= "0000000000011100";
-		  ws_tst <= '1';
-		    wait for 2ns;
-			   check(ws_tst = '1')
-				check(wsd_tst_r = sd_tst, " Error, data not present on right output buffer")
-				
-					  wait for 100 ns;
-		end if;
-	end loop;
+          elsif ("right_channel") then
+	    start_simuli => true;
+            info(" Provide data on right channel");
+	    sd_tst <= "0000000000011100";
+            ws_tst <= '1';
+            wait for 2ns;
+            check(ws_tst = '1')
+	    check(wsd_tst_r = sd_tst, " Error, data not present on right output buffer")
+	    wait for 100 ns;
+          end if;
+       end loop;
 	
 test_runner_cleanup(runner);
 end process;
-
 end architecture;
