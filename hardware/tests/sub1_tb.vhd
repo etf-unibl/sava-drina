@@ -9,7 +9,10 @@ USE IEEE.NUMERIC_STD.ALL;
 
 LIBRARY vunit_lib;
 context vunit_lib.vunit_context;
+use vunit_lib.run_pkg.all;
+use vunit_lib.check_pkg.all;
 
+library common_lib;
 
 entity sub1_tb is
   generic (runner_cfg : string := runner_cfg_default);
@@ -21,20 +24,9 @@ architecture tb of sub1_tb is
 signal test1_in, test2_in, test_out : std_logic_vector(15 downto 0);
 signal start_stimuli, stimuli_done : boolean := false;
 signal ctrl_in : std_logic_vector(1 downto 0);
-component sub1
-
-
-	port (
-     a_i    : in  std_logic_vector(15 downto 0);
-     b_i    : in  std_logic_vector(15 downto 0);
-     c_i    : in  std_logic_vector(1 downto 0);
-     y_o    : out std_logic_vector(15 downto 0));
-
-end component;
-
 
 begin
-	 ut: sub1
+	 invdut : entity design_lib.sub1
 	   port map( 
 		  a_i    => test1_in,
 		  b_i    => test2_in,
