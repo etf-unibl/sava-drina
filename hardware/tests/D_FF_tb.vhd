@@ -10,11 +10,11 @@ use vunit_lib.check_pkg.all;
 
 library common_lib;
 
-entity DFF_tb is
+entity D_FF_tb is
     generic (runner_cfg : STRING := runner_cfg_default);
 end entity;
 
-architecture beh of DFF_tb is
+architecture beh of D_FF_tb is
     
 signal clk_i_tst     : std_logic := '0';
 signal reset_i_tst   : std_logic := '0';
@@ -23,7 +23,7 @@ signal Q_o_tst    : std_logic;
 signal start_stimuli : boolean := false;
 
 begin
-  invdut : entity common_lib.DFF
+  invdut : entity common_lib.D_FF
     port map(
       clk_i   => clk_i_tst,
       reset_i => reset_i_tst,
