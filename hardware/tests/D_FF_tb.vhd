@@ -5,19 +5,16 @@ USE IEEE.NUMERIC_STD.ALL;
 
 library vunit_lib;
 context vunit_lib.vunit_context;
+use vunit_lib.run_pkg.all;
+use vunit_lib.check_pkg.all;
+
+library design_lib;
 
 entity D_FF_tb is
     generic (runner_cfg : STRING := runner_cfg_default);
 end entity;
 
 architecture beh of D_FF_tb is
-component D_FF
-  port (
-       clk_i   : in std_logic;
-       reset_i : in std_logic;
-       D_i     : in std_logic;
-       Q_o     : out std_logic);
-  end component;
 
 signal clk_i_tst     : std_logic := '0';
 signal reset_i_tst   : std_logic := '0';
@@ -26,7 +23,7 @@ signal Q_o_tst    : std_logic;
 signal start_stimuli : boolean := false;
 
 begin
-  uut : D_FF
+  invdut : entity design_lib.D_FF
     port map(
       clk_i   => clk_i_tst,
       reset_i => reset_i_tst,
