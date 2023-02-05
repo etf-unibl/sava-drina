@@ -14,7 +14,7 @@ entity rx_line_tb is
   generic (runner_cfg : string := runner_cfg_default);
 end entity;
 
-arhitecture tb of rx_line_tb is
+architecture tb of rx_line_tb is
 signal sd_tst        : std_logic_vector(15 downto 0);
 signal sck_tst       : std_logic;
 signal ws_tst        : std_logic;
@@ -27,10 +27,10 @@ signal start_stimuli : boolean := false;
 component rx_line_tb 
 
   port(
-       sd        : in std_logic_vector(15 downto 0);
+                 sd        : in std_logic_vector(15 downto 0);
 		 sck       : in std_logic;
 		 ws        : in std_logic;
-       wsd_left  : out std_logic(15 downto 0)
+                 wsd_left  : out std_logic(15 downto 0)
 		 wsd_right : out std_logic (15 downto 0));
 		 
 end component;
