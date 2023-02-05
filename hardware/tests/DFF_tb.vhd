@@ -11,16 +11,7 @@ entity DFF_tb is
 end entity;
 
 architecture beh of DFF_tb is
-
-component D_FF
-  port (
-       clk_i   : in std_logic;
-       reset_i : in std_logic;
-       D_i     : in std_logic;
-       Q_o     : out std_logic);
-  end component;
-
-
+    
 signal clk_i_tst     : std_logic := '0';
 signal reset_i_tst   : std_logic := '0';
 signal D_i_tst       : std_logic := '0';
@@ -28,7 +19,7 @@ signal Q_o_tst    : std_logic;
 signal start_stimuli : boolean := false;
 
 begin
-  uut : D_FF
+  invdut : entity common_lib.DFF
     port map(
       clk_i   => clk_i_tst,
       reset_i => reset_i_tst,
