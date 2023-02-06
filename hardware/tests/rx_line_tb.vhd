@@ -8,7 +8,10 @@ USE IEEE.NUMERIC_STD.ALL;
 
 LIBRARY vunit_lib;
 context vunit_lib.vunit_context;
+use vunit_lib.run_pkg.all;
+use vunit_lib.check_pkg.all;
 
+library design_lib;
 
 entity rx_line_tb is
   generic (runner_cfg : string := runner_cfg_default);
@@ -22,22 +25,8 @@ signal wsd_tst_l     : std_logic_vector(15 downto 0);
 signal wsd_tst_r     : std_logic_vector(15 downto 0);
 signal start_stimuli : boolean := false;
 
-
-
-component rx_line_tb 
-
-  port(
-                 sd        : in std_logic_vector(15 downto 0);
-		 sck       : in std_logic;
-		 ws        : in std_logic;
-                 wsd_left  : out std_logic(15 downto 0)
-		 wsd_right : out std_logic (15 downto 0));
-		 
-end component;
-
 begin
-
-  ut: rx_line_tb
+  invdut : entity design_lib.rx_line
     port map(
 	          sd        => sd_tst;
 		  sck       => sck_tst;
