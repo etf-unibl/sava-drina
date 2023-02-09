@@ -47,7 +47,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity shift_register is
-    Port ( clk : in  std_logic;
+    port ( clk : in  std_logic;
            enable : in  std_logic;
            data_in : in  std_logic;
            data_out : out  std_logic_vector (23 downto 0));
