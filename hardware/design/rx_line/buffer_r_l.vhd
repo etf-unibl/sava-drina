@@ -4,11 +4,11 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name: I2S receive side 
+-- unit name: buffer24
 --
 -- description:
 --
---   This file implements receive side in I2S protocol
+--   This file implements 24-buffer
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -35,64 +35,30 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file
+--! @brief Preamble generator
+-----------------------------------------------------------------------------
 
-
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
+--! Use numeric elements
 use ieee.numeric_std.all;
 
-entity i2s_rx is
-    Port ( bclk_i : in  std_logic;
-           ws_i : in  std_logic;
-           data_i : in  std_logic_vector (15 downto 0);
-           valid_o : out  std_logic;
-           data_left_o : out  std_logic_vector (15 downto 0);
-           data_right_o : out  std_logic_vector (15 downto 0));
-end i2s_rx;
 
-architecture Behavioral of i2s_rx is
-    type buffer_type is array (0 to 1) of std_logic_vector (15 downto 0); -- Buffer type (left channel or right channel)
-    signal buffer_i : buffer_type := (others => (others => '0'));
-    signal buffer_sel : integer range 0 to 1 := 0;
-    signal sample : std_logic_vector(15 downto 0) := (others => '0');
-	 signal a : integer := 1;
+entity buffer_r_l is
+    port (write_enable : in std_logic;
+          data_in : in std_logic_vector (23 downto 0);
+          data_out : out std_logic_vector (23 downto 0));
+end entity;
 
+architecture behavioral of buffer24 is
 begin
-    process (bclk_i, ws_i)  
+    process(write_enable)
     begin
-        if (bclk_i'event and bclk_i = '1') then
-            if (ws_i = '0') then
-                sample <= data_i;
-            elsif (ws_i = '1') then
-                buffer_i(buffer_sel) <= sample; -- sacuvati podatke u jedan od bafera
-                buffer_sel <= buffer_sel xor a; -- međusobno iskljucivanje bafera (ili se koristi jedan ili drugi)
-            end if;
+        if (falling_edge(write_enable)) then
+            data_out <= data_in;
         end if;
     end process;
-    
-    data_left_reg : process (bclk_i)
-    begin
-        if (bclk_i'event and bclk_i = '1') then
-            data_left_o <= buffer_i(0);
-        end if;
-    end process;
-    
-    data_right_reg : process (bclk_i)
-    begin
-        if (bclk_i'event and bclk_i = '1') then
-            data_right_o <= buffer_i(1);
-        end if;
-    end process;
-    
-    valid_o_reg : process (bclk_i, ws_i)
-    begin
-        if (bclk_i'event and bclk_i = '1') then
-            if (ws_i = '1') then
-                valid_o <= '1';
-            else
-                valid_o <= '0';
-            end if;
-        end if;
-    end process;
-end Behavioral;
+end architecture;
