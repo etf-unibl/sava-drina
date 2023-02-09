@@ -1,0 +1,27 @@
+# Reading pref.tcl
+# ERROR: No extended dataflow license exists
+# source "C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.test_dff.hold_b66fb35161444c01329055dbf0493fbc58053b6d/modelsim/gui.do"
+# vsim -modelsimini C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/modelsim/modelsim.ini -wlf C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.test_dff.hold_b66fb35161444c01329055dbf0493fbc58053b6d/modelsim/vsim.wlf -quiet -t ps -onfinish stop tb_lib.test_dff(behavior) -L vunit_lib -L design_lib -L tb_lib -g/test_dff/runner_cfg="active python runner : true,enabled_test_cases : hold,output path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.test_dff.hold_b66fb35161444c01329055dbf0493fbc58053b6d/,tb path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/tests/,use_color : false" 
+# Start time: 13:00:55 on Feb 03,2023
+# ** Warning: Design size of 23581 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# List of VUnit commands:
+# vunit_help
+#   - Prints this help
+# vunit_load [vsim_extra_args]
+#   - Load design with correct generics for the test
+#   - Optional first argument are passed as extra flags to vsim
+# vunit_user_init
+#   - Re-runs the user defined init file
+# vunit_run
+#   - Run test, must do vunit_load first
+# vunit_compile
+#   - Recompiles the source files
+# vunit_restart
+#   - Recompiles the source files
+#   - and re-runs the simulation if the compile was successful
+add wave -position end sim:/test_dff/uut/*
+run -all
+#         24000 ps - default              -    INFO - na ulazu je dovedena 1 (test_DFF.vhd:59)
+#         24000 ps - default              -    INFO - Dok ne dodje do aktivne ivice CLK, DFF cuva prethodno stanje na izlazu (test_DFF.vhd:61)
+# Break in Subprogram stop at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13

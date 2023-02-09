@@ -1,0 +1,11 @@
+# do {C:\Users\AMG_Computers\AppData\Local\Programs\Python\Python310\Lib\site-packages\vunit_hdl-4.6.1rc0-py3.10.egg\vunit\sim_if\tcl_read_eval_loop.tcl}
+# vsim -modelsimini C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/modelsim/modelsim.ini -wlf C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.test_dff.hold_b66fb35161444c01329055dbf0493fbc58053b6d/modelsim/vsim.wlf -quiet -t ps -onfinish stop tb_lib.test_dff(behavior) -L vunit_lib -L design_lib -L tb_lib -g/test_dff/runner_cfg="active python runner : true,enabled_test_cases : hold,output path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.test_dff.hold_b66fb35161444c01329055dbf0493fbc58053b6d/,tb path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/tests/,use_color : true" 
+# Start time: 13:00:37 on Feb 03,2023
+# ** Warning: Design size of 23581 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+#         [22;96;49m24000 ps[0m - [1;37;49mdefault[0m              -    [1;37;49mINFO[0m - na ulazu je dovedena 1 (test_DFF.vhd:59)
+#         [22;96;49m24000 ps[0m - [1;37;49mdefault[0m              -    [1;37;49mINFO[0m - Dok ne dodje do aktivne ivice CLK, DFF cuva prethodno stanje na izlazu (test_DFF.vhd:61)
+# Break in Subprogram stop at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13
+# Stopped at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13
+# End time: 13:00:38 on Feb 03,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1

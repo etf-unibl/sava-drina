@@ -1,0 +1,95 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware
+Ed_ff
+Z1 w1675425373
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 1
+R0
+Z4 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\D_FF.vhd
+Z5 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\D_FF.vhd
+l0
+L50 1
+ViW2A;RmN^iPVZ3I[S91Gb1
+!s100 HER>4M`lFGigES?4b>IcN2
+Z6 OV;C;2020.1;71
+33
+Z7 !s110 1675425374
+!i10b 1
+Z8 !s108 1675425374.000000
+Z9 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\D_FF.vhd|
+!s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\D_FF.vhd|
+!i113 1
+Z10 o-quiet -2008 -work design_lib
+Z11 tExplicit 1 CvgOpt 0
+Abeh
+R2
+R3
+DEx4 work 4 d_ff 0 22 iW2A;RmN^iPVZ3I[S91Gb1
+!i122 1
+l64
+L60 14
+VI>zbU]_R1A0l:8SE48N[L2
+!s100 kd0:nZc>X8VkaiYV@JSnQ1
+R6
+33
+R7
+!i10b 1
+R8
+R9
+Z12 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\D_FF.vhd|
+!i113 1
+R10
+R11
+Esub1
+R1
+Z13 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+R2
+R3
+!i122 0
+R0
+Z14 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\sub1.vhd
+Z15 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\sub1.vhd
+l0
+L55 1
+VoHXn]PCo[V@9fm[>KC49o0
+!s100 MUIf9L=4>g9n2En:9FOVC3
+R6
+33
+R7
+!i10b 1
+R8
+Z16 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\sub1.vhd|
+Z17 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\sub1.vhd|
+!i113 1
+R10
+R11
+Abeh_arch
+R13
+R2
+R3
+DEx4 work 4 sub1 0 22 oHXn]PCo[V@9fm[>KC49o0
+!i122 0
+l71
+L69 15
+V;kXeXlLk?NkiHlz_@29RP0
+!s100 UC@n@5`l[hWNnC>RFzLez1
+R6
+33
+R7
+!i10b 1
+R8
+R16
+R17
+!i113 1
+R10
+R11
