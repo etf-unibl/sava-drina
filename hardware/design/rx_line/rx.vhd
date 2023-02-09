@@ -93,7 +93,7 @@ begin
 
 process(ws_i)
 begin
-  if(falling_edge(ws_i) and enable_e = '0') then
+  if(falling_edge(ws_i) and enable_e = '1') then
     enable_e <= '0';
     reset_r <= '0';
   end if;
@@ -101,10 +101,10 @@ end process;
 
 counter_s_s <= '1' when (count_c = "000000000000000000010111") else
                '0';
-enable_l <= (ws_i) and counter_s_s;
+enable_l <= (not ws_i) and counter_s_s;
 enable_r <= ws_i and counter_s_s;
 shift_reg : shift_register
-  port map(clk => bclk_i, enable => enable_e, data_in => sd_i, data_out => data);
+  port map(clk => bclk_i, enable => enable_e, data_in => '0', data_out => data);
 counter_count : counter
   port map(clk => bclk_i, reset => reset_r, enable => enable_e, count => count_c);
 left_buffer : buffer_r_l
