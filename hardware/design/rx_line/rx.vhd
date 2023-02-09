@@ -104,13 +104,14 @@ counter_s_s <= '1' when (count_c = "000000000000000000010111") else
 enable_l <= (not ws_i) and counter_s_s;
 enable_r <= ws_i and counter_s_s;
 shift_reg : shift_register
-  port map(clk => bclk_i, enable => enable_e, data_in => '0', data_out => data);
+  port map(clk => bclk_i, enable => enable_e, data_in => sd_i, data_out => data);
 counter_count : counter
   port map(clk => bclk_i, reset => reset_r, enable => enable_e, count => count_c);
 left_buffer : buffer_r_l
   port map(write_enable => enable_l, data_in => data, data_out => data_l);
 right_buffer : buffer_r_l
   port map(write_enable => enable_r, data_in => data, data_out => data_r);
+--Outputs
 data_l_o <= data_l;
 data_r_o <= data_r;
 count_o <= count_c;
