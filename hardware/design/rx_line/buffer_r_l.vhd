@@ -46,14 +46,14 @@ use ieee.std_logic_1164.all;
 --! Use numeric elements
 use ieee.numeric_std.all;
 
-
+--entity of right/left buffer
 entity buffer_r_l is
     port (write_enable : in std_logic;
           data_in : in std_logic_vector (23 downto 0);
           data_out : out std_logic_vector (23 downto 0));
 end entity;
-
-architecture behavioral of buffer24 is
+--defined behavioral of buffer
+architecture behavioral of buffer_r_l is
 begin
     process(write_enable)
     begin
