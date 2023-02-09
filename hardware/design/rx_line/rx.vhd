@@ -46,7 +46,6 @@ use ieee.std_logic_1164.all;
 --! Use numeric elements
 use ieee.numeric_std.all;
 
- 
 --! @details The entity describes all the necessary input and
 --! output signals needed to realize this complex circuit.
 
@@ -54,11 +53,11 @@ use ieee.numeric_std.all;
 entity rx is
   port(
     bclk_i : in std_logic;
-	 ws_i : in std_logic;
-	 sd_i : in std_logic;
-	 data_l_o : out std_logic_vector(23 downto 0);
-	 count_o : out std_logic_vector(23 downto 0);
-	 data_r_o : out std_logic_vector(23 downto 0)
+    ws_i : in std_logic;
+    sd_i : in std_logic;
+    data_l_o : out std_logic_vector(23 downto 0);
+    count_o : out std_logic_vector(23 downto 0);
+    data_r_o : out std_logic_vector(23 downto 0)
   );
 end rx;
 
@@ -67,55 +66,52 @@ end rx;
 --! and after that data are sending to two baffer. We have to baffer.
 
 architecture arch of rx is
-	component buffer_r_l
-		port (write_enable : in std_logic;
-          data_in : in std_logic_vector (23 downto 0);
-          data_out : out std_logic_vector (23 downto 0)
-		);
-	end component;
-	component counter
-		port (clk, reset, enable : in std_logic;
-          count : out std_logic_vector (23 downto 0)
-		);
-	end component;
-	component shift_register
-		port (clk : in  STD_LOGIC;
-           enable : in  STD_LOGIC;
-           data_in : in  STD_LOGIC;
-           data_out : out  STD_LOGIC_VECTOR (23 downto 0)
-		);
-	end component;
-	signal data, count_c, data_l, data_r: std_logic_vector(23 downto 0) := (others => '0');
-	signal counter_s_s : std_logic := '0';
-	signal enable_e: std_logic := '0';
-	signal reset_r : std_logic := '1';
-	signal enable_l, enable_r : std_logic;
+component buffer_r_l
+  port (write_enable : in std_logic;
+        data_in : in std_logic_vector (23 downto 0);
+        data_out : out std_logic_vector (23 downto 0)
+	);
+end component;
+component counter
+  port (clk, reset, enable : in std_logic;
+        count : out std_logic_vector (23 downto 0)
+	);
+end component;
+component shift_register
+  port (clk : in  STD_LOGIC;
+        enable : in  STD_LOGIC;
+        data_in : in  STD_LOGIC;
+        data_out : out  STD_LOGIC_VECTOR (23 downto 0)
+	);
+end component;
+  signal data, count_c, data_l, data_r : std_logic_vector(23 downto 0) := (others => '0');
+  signal counter_s_s : std_logic := '0';
+  signal enable_e : std_logic := '0';
+  signal reset_r : std_logic := '1';
+  signal enable_l, enable_r : std_logic;
 begin
 
-	process(ws_i)
-	begin
-		if(falling_edge(ws_i) and enable_e = '0') then
-			enable_e <= '1';
-			reset_r <= '0';
-		end if;
-	end process;
+process(ws_i)
+begin
+  if(falling_edge(ws_i) and enable_e = '0') then
+    enable_e <= '1';
+    reset_r <= '0';
+  end if;
+end process;
 
-	counter_s_s <= '1' when (count_c = "000000000000000000010111") else
-					   '0';
-				 
-	enable_l <= (not ws_i) and counter_s_s;
-	enable_r <= ws_i and counter_s_s;
-	
-	shift_reg : shift_register 
-		port map(clk => bclk_i, enable => enable_e, data_in => sd_i, data_out => data);
-	counter_count : counter
-		port map(clk => bclk_i, reset => reset_r, enable => enable_e, count => count_c);
-	left_buffer : buffer24
-		port map(write_enable => enable_l, data_in => data, data_out => data_l);
-	right_buffer : buffer_r_l
-		port map(write_enable => enable_r, data_in => data, data_out => data_r);
-	
-	data_l_o <= data_l;
-	data_r_o <= data_r;
-	count_o <= count_c;
+counter_s_s <= '1' when (count_c = "000000000000000000010111") else
+	       '0';
+enable_l <= (not ws_i) and counter_s_s;
+enable_r <= ws_i and counter_s_s;
+shift_reg : shift_register
+  port map(clk => bclk_i, enable => enable_e, data_in => sd_i, data_out => data);
+counter_count : counter
+  port map(clk => bclk_i, reset => reset_r, enable => enable_e, count => count_c);
+left_buffer : buffer24
+  port map(write_enable => enable_l, data_in => data, data_out => data_l);
+right_buffer : buffer_r_l
+  port map(write_enable => enable_r, data_in => data, data_out => data_r);
+data_l_o <= data_l;
+data_r_o <= data_r;
+count_o <= count_c;
 end arch;
