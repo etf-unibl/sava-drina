@@ -60,13 +60,13 @@ begin
         if (reset = '1') then
             count_pom <= (others => '0');
         elsif (clk'event and clk = '1' and enable = '1') then
-		if(count_pom = 24) then
-			count_pom <= (others => '0');
-		else
-			count_pom <= count_pom + 1;
-		end if;
+            if(count_pom = 24) then
+               count_pom <= (others => '0');
+            else
+               count_pom <= count_pom + 1;
+            end if;
         end if;
     end process;
-		count <= std_logic_vector(count_pom);
-end arch;
-					
+  count <= std_logic_vector(count_pom);
+  end arch;
+  
