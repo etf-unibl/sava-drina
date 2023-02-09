@@ -46,12 +46,12 @@ use ieee.std_logic_1164.all;
 --! Use numeric elements
 use ieee.numeric_std.all;
 
-
+--entity with imputs and outputs
 entity counter is
     port (clk, reset, enable : in std_logic;
           count : out std_logic_vector (23 downto 0));
 end counter;
-
+--architecture
 architecture arch of counter is
   signal count_pom : unsigned (23 downto 0);
 begin
@@ -60,12 +60,13 @@ begin
         if (reset = '1') then
             count_pom <= (others => '0');
         elsif (clk'event and clk = '1' and enable = '1') then
-				if(count_pom = 24) then
-				   count_pom <= (others => '0');
-				else
-					count_pom <= count_pom + 1;
-				end if;
+		if(count_pom = 24) then
+			count_pom <= (others => '0');
+		else
+			count_pom <= count_pom + 1;
+		end if;
         end if;
     end process;
-	 count <= std_logic_vector(count_pom);
+		count <= std_logic_vector(count_pom);
 end arch;
+					
