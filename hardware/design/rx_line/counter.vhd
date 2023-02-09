@@ -69,4 +69,3 @@ begin
     end process;
   count <= std_logic_vector(count_pom);
   end arch;
-  
