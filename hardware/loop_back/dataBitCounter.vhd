@@ -35,18 +35,20 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file dataBitCounter.vhd
+--! @brief This file describe synchronous counter using the 50khz clock from the audioCodecController,
+--! counts the dataBits (0 to 23) sent to the audio codec.
 
--- synchronous counter using the 50khz clock from the audioCodecController
--- counts the dataBits (0 to 23) sent to the audio codec
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
-
+--! @brief Entity description for dataBitCounter.
+--! @details  Entity contains input signals countEnable_i(active high count enable),
+--! reset_i(active high reset) and clock_i. Output signals currentBitCount_o and currentWordCount_o represents counted dataBits.
 entity dataBitCounter is
   port(
-    -- active high count enable
     countEnable_i      : in  std_logic;
-    -- active high reset
     reset_i            : in  std_logic;
     clock_i            : in  std_logic;
     currentBitCount_o  : out integer;
@@ -54,13 +56,15 @@ entity dataBitCounter is
   );
 end dataBitCounter;
 
+--! @brief Architecture definition for dataBitCounter.
+--! @details Counter starts counting when reset is cleared and input signal countEnable_i is enabled.
+
 architecture arch of dataBitCounter is
 
-  -- output
+  --! Output
   signal countBit  : integer range 0 to 23 := 23;
   signal countWord : integer range 0 to 10 := 0;
 begin
-  -- starts counting when reset is cleared and enable is
   counter : process(clock_i, reset_i, countEnable_i)
   begin
     if reset_i = '0' then

@@ -35,18 +35,22 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file ROMcontroller.vhd
+--! @brief This file selects and returns a 24-bit word from the ROM, using input from the audio codec.
 
--- using input from the audio codec, selects and returns a 24-bit word from the rom
--- input is an increment signal, which causes the address of the ROM to increment by one,
--- from 0 to 10 for 10 registers writing
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
+--! Use numeric elements
 use ieee.numeric_std.all;
 
+--! @brief Entity description for ROMcontroller.
+--! @details Input is an increment signal, which causes the address of the ROM to increment by one,
+--! from 0 to 10 for 10 registers writing.
 entity ROMcontroller is
   port(
-    -- asynch active-high reset
+    --! Asynch active-high reset
     reset_i      : in  std_logic;
     increment_i  : in  std_logic;
     clock50KHz_i : in  std_logic;
@@ -54,9 +58,10 @@ entity ROMcontroller is
     ROMword_o    : out std_logic_vector(23 downto 0)
   );
 end ROMcontroller;
-
+--! @brief Architecture definition for ROMcontroller.
+--! @details Architecture contains ROM 1-port memory module from MegaIP Wizard.
+--! Using input from the audio codec, selects and returns a 24-bit word from the rom.
 architecture arch of ROMcontroller is
-  -- ROM 1-port memory module from MegaIP Wizard
   component codecROM is
     port
     (
@@ -66,10 +71,10 @@ architecture arch of ROMcontroller is
     );
   end component;
 
-  -- address vector sent to the ROM component
+  --! Address vector sent to the ROM component
   signal address_vector_5 : std_logic_vector(4 downto 0);
   signal address_integer  : integer range 0 to 9 := 0;
-  -- output data vector from the ROM component
+  --! Output data vector from the ROM component
   signal data_vector_24   : std_logic_vector(23 downto 0);
 
 begin
@@ -93,7 +98,7 @@ begin
       address_integer <= 0;
     end if;
   end process inc;
-  -- convert address integer into address vector
+  --! Convert address integer into address vector.
   address_vector_5 <= std_logic_vector(to_unsigned(address_integer, 5));
   ROMword_o <= data_vector_24;
 end arch;

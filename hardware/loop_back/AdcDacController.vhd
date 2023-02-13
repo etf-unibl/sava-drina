@@ -35,60 +35,67 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file AdcDacController.vhd
+--! @brief This unit creates the ADC and DAC signal needed by the audio codec.
+--! @details Inputs are reset from the delay buffer, 50MHz clock from PLL
 
--- Creates the ADC and DAC signals needed by the audio codec.
--- inputs are reset from the delay buffer, 50MHz clock from PLL
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
 
+--! @brief Entity description for AdcDacController.
+--! @details This entity contains clock and reset inputs.
+--! Input adcData_i refers to analog signal from line-in, and dacData_o refers to signal who will be on line-out.
 entity AdcDacController is
   port(
-    -- reset signal starts '0', then goes to '1' after 40 ms => active-low
-    resetn_i      : in  std_logic;
-    -- from 50MHz PLL at toplevel
-    clock18MHz_i  : in  std_logic;
-    -- line-in
-    adcData_i     : in  std_logic;
-    -- line-out
-    dacData_o     : out std_logic;
-    bitClock_o    : out std_logic;
-    dacLRSelect_o : out std_logic;
-    adcLRSelect_o : out std_logic
+    resetn_i      : in  std_logic; --! Reset signal starts '0', then goes to '1' after 40 ms => active-low
+    clock18MHz_i  : in  std_logic; --! From 50MHz PLL at toplevel
+    adcData_i     : in  std_logic; --! Line-in - analog to digital
+    dacData_o     : out std_logic; --! Line-out - digital to analog
+    bitClock_o    : out std_logic; --! Digital audio bit clock
+    dacLRSelect_o : out std_logic; --! Output signal - Left/right channel signal
+    adcLRSelect_o : out std_logic  --! Output signal - Left/right channel signal
   );
 end AdcDacController;
 
+--! @brief   Architecture definition for AdcDacController.
+--! @details Architecture implements loopback operation.
+--! @details The loopback operation in ADC to DAC audio refers to a process where an analog audio signal is converted
+--! to digital by an ADC (Analog-to-Digital Converter), processed or manipulated digitally, and then converted back
+--! to analog by a DAC (Digital-to-Analog Converter) for output.
+
 architecture arch of AdcDacController is
-  -- bitCount generator. Changes every 12 counts of the MCLK (18MHz)
+--! BitCount generator. Changes every 12 counts of the MCLK (18MHz)
   component bclk_counter is
     port(
-      -- active high reset
+      --! Active high reset
       reset_i : in  std_logic;
       mclk_i  : in  std_logic;
       bclk_o  : out std_logic
     );
   end component;
-  -- generates left/right channel signal
+--! Generates left/right channel signal
   component LRchannelCounter is
     port(
-      -- active high reset
+      --! Active high reset
       reset_i     : in  std_logic;
       bclk_i      : in  std_logic;
-      -- left = '1', right = '0'
+      --! Left = '1', Right = '0'
       LRchannel_o : out std_logic
     );
   end component;
 
-  -- active-high reset
+ --! Active-high reset
   signal reset         : std_logic;
-  -- bit clock
+ --! Bit clock
   signal bitClock_sig  : std_logic;
-  -- left/right channnel control signal
+ --! Left/right channnel control signal
   signal LRchannel_sig : std_logic;
 
 begin
 
-  -- turns active-low reset into active-high
+ --! Turns active-low reset into active-high
   reset <= not resetn_i;
 
   bclk_counterMap : bclk_counter port map(reset_i => reset,
@@ -99,11 +106,11 @@ begin
                                                   bclk_i      => bitClock_sig,
                                                   LRchannel_o => LRchannel_sig);
 
-  -- output signals
+ --! Output signals
   bitClock_o <= bitClock_sig;
   dacLRSelect_o <= LRchannel_sig;
   adcLRSelect_o <= LRchannel_sig;
 
-  -- Loop-back
+ --! Loop-back
   dacData_o <= adcData_i;
 end arch;
