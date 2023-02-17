@@ -19,6 +19,7 @@ end entity;
 
 architecture tb of shift_register_tb is
     signal clk_tst : std_logic := '0';
+    signal reset_tst: std_logic;
     signal enable_tst : std_logic;
     signal data_in_tst : std_logic;
     signal data_out_tst : std_logic_vector (23 downto 0);
@@ -26,6 +27,7 @@ architecture tb of shift_register_tb is
 begin
   invdut : entity design_lib.shift_register
     port map (clk => clk_tst,
+              reset => reset_tst,
               enable => enable_tst,
               data_in => data_in_tst,
               data_out => data_out_tst);
@@ -51,6 +53,9 @@ begin
    while test_suite loop
      tmp <= (others => '0');
            if run("test_counting") then
+            reset_tst <= '1';
+            wait for 20 ns;
+            reset_tst <= '0';
             enable_tst <= '1';
             wait for 2 ns;
             while tmp < 50 loop

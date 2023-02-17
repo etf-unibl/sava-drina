@@ -49,15 +49,16 @@ use ieee.numeric_std.all;
 --entity of right/left buffer
 entity buffer_r_l is
     port (write_enable : in std_logic;
-          data_in : in std_logic_vector (23 downto 0);
-          data_out : out std_logic_vector (23 downto 0));
+          clk_i        : in std_logic;
+          data_in      : in std_logic_vector (23 downto 0);
+          data_out     : out std_logic_vector (23 downto 0));
 end entity;
 --defined behavioral of buffer
 architecture behavioral of buffer_r_l is
 begin
-    process(write_enable)
+    process(clk_i, write_enable)
     begin
-        if (falling_edge(write_enable)) then
+        if (rising_edge(clk_i) and write_enable = '1') then
             data_out <= data_in;
         end if;
     end process;

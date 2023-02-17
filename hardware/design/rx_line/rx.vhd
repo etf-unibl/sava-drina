@@ -52,67 +52,115 @@ use ieee.numeric_std.all;
 
 entity rx is
   port(
-    bclk_i : in std_logic;
-    ws_i : in std_logic;
-    sd_i : in std_logic;
+    bclk_i   : in std_logic;
+    clk_i    : in std_logic;
+    ws_i     : in std_logic;
+    sd_i     : in std_logic;
     data_l_o : out std_logic_vector(23 downto 0);
-    count_o : out std_logic_vector(23 downto 0);
+    count_o  : out std_logic_vector(23 downto 0);
     data_r_o : out std_logic_vector(23 downto 0)
   );
 end rx;
 
---! @brief Architecture definition sending data from input to side for processing data .
---! @details There are the following steps to send data to shift register,
---! and after that data are sending to two baffer. We have to baffer.
+-- Architecture of receiver design
 
 architecture arch of rx is
 component buffer_r_l
   port (write_enable : in std_logic;
-        data_in : in std_logic_vector (23 downto 0);
-        data_out : out std_logic_vector (23 downto 0)
+        clk_i        : in std_logic;
+        data_in      : in std_logic_vector (23 downto 0);
+        data_out     : out std_logic_vector (23 downto 0)
        );
 end component;
+
+-- all needed signals
+  signal register_out, count_c, left_channel, right_channel : std_logic_vector(23 downto 0) := (others => '0');
+  signal en_data, en_receive, counter_limit : std_logic := '0';
+  signal reset_r : std_logic := '1';
+  signal en_left_line, en_right_line : std_logic;
+
+-- including all components below
 component counter
   port (clk, reset, enable : in std_logic;
         count : out std_logic_vector (23 downto 0)
        );
 end component;
+
 component shift_register
-  port (clk : in  STD_LOGIC;
-        enable : in  STD_LOGIC;
-        data_in : in  STD_LOGIC;
-        data_out : out  STD_LOGIC_VECTOR (23 downto 0)
+  port (clk      : in std_logic;
+        reset    : in std_logic;
+        enable   : in std_logic;
+        data_in  : in std_logic;
+        data_out : out std_logic_vector(23 downto 0)
        );
 end component;
-  signal data, count_c, data_l, data_r : std_logic_vector(23 downto 0) := (others => '0');
-  signal counter_s_s : std_logic := '0';
-  signal enable_e : std_logic := '0';
-  signal reset_r : std_logic := '1';
-  signal enable_l, enable_r : std_logic;
-begin
 
-process(ws_i)
-begin
-  if(falling_edge(ws_i) and enable_e = '1') then
-    enable_e <= '0';
-    reset_r <= '0';
-  end if;
-end process;
+component dual_edge_detector
+    port (
+      clk_i    : in std_logic;
+      rst_i    : in std_logic;
+      strobe_i : in std_logic;
+      p_o      : out std_logic
+    );
+end component;
 
-counter_s_s <= '1' when (count_c = "000000000000000000010111") else
-               '0';
-enable_l <= (not ws_i) and counter_s_s;
-enable_r <= ws_i and counter_s_s;
+-- We need to provide sending data from input to side for processing data.
+-- There are the following steps to send data to shift register and then to left or right buffer.
+
+-- Mapping components to signals in rx design
+begin
+ ws_detector : dual_edge_detector
+  port map(
+    clk_i    => clk_i,
+    rst_i    => '0',
+    strobe_i => ws_i,
+    p_o      => en_receive);
+
+  bclk_detector : dual_edge_detector
+  port map(clk_i    => clk_i,
+           rst_i    => '0',
+           strobe_i => bclk_i,
+           p_o      => en_data);
+
+reset_to_low : process (clk_i, en_receive)
+  begin
+    if (en_receive = '1') then
+      reset_r <= '0';
+    end if;
+  end process;
+
+counter_limit <= '1' when (count_c = "000000000000000000010111") else
+                 '0';
+en_left_line  <= (not ws_i) and counter_limit;
+en_right_line <= (ws_i) and counter_limit;
+
 shift_reg : shift_register
-  port map(clk => bclk_i, enable => enable_e, data_in => sd_i, data_out => data);
+  port map(clk      => clk_i,
+           reset    => reset_r,
+           enable   => en_data,
+           data_in  => sd_i,
+           data_out => register_out);
+
 counter_count : counter
-  port map(clk => bclk_i, reset => reset_r, enable => enable_e, count => count_c);
-left_buffer : buffer_r_l
-  port map(write_enable => enable_l, data_in => data, data_out => data_l);
-right_buffer : buffer_r_l
-  port map(write_enable => enable_r, data_in => data, data_out => data_r);
+  port map(clk    => clk_i,
+           reset  => reset_r,
+           enable => en_data,
+           count  => count_c);
+
+left_line : buffer_r_l
+  port map(write_enable => en_left_line,
+           clk_i        => clk_i,
+           data_in      => register_out,
+           data_out     => left_channel);
+
+right_line : buffer_r_l
+  port map(write_enable => en_right_line,
+           clk_i        => clk_i,
+           data_in      => register_out,
+           data_out     => right_channel);
+
 --Outputs
-data_l_o <= data_l;
-data_r_o <= data_r;
-count_o <= count_c;
+data_l_o <= left_channel;
+data_r_o <= right_channel;
+count_o  <= count_c;
 end arch;

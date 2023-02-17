@@ -18,17 +18,17 @@ entity counter_tb is
 end entity;
 
 architecture tb of counter_tb is
-    signal clk_tst : std_logic := '0';
-    signal reset_tst : std_logic := '0';
+    signal clk_tst    : std_logic := '0';
+    signal reset_tst  : std_logic := '0';
     signal enable_tst : std_logic := '0';
-    signal count_tst : std_logic_vector(23 downto 0) := "000000000000000000000000";
+    signal count_tst  : std_logic_vector(23 downto 0) := "000000000000000000000000";
     signal tmp : unsigned (23 downto 0);
 begin
   invdut : entity design_lib.counter
-    port map (clk => clk_tst,
-              reset => reset_tst,
+    port map (clk    => clk_tst,
+              reset  => reset_tst,
               enable => enable_tst,
-              count => count_tst);
+              count  => count_tst);
 
 clk : process
   begin
