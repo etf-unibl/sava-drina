@@ -39,12 +39,13 @@ clk : process
     clk_tst <= '1';
     wait for 10 ns;
   end process;
+
 data : process
   begin
     data_in_tst <= '0';
-    wait for 7 ns;
+    wait for 15 ns;
     data_in_tst <= '1';
-    wait for 7 ns;
+    wait for 15 ns;
   end process;
 
 main : process
@@ -52,15 +53,18 @@ begin
  test_runner_setup(runner, runner_cfg);
    while test_suite loop
      tmp <= (others => '0');
-           if run("test_counting") then
+           if run("test_output") then
             reset_tst <= '1';
-            wait for 20 ns;
+            wait for 2 ns;
+            check(data_out_tst = "000000000000000000000000", "Reset testing");
+            wait for 2 ns;
             reset_tst <= '0';
             enable_tst <= '1';
-            wait for 2 ns;
-            while tmp < 50 loop
+            wait for 200 ns;
+            while tmp < 20 loop
             wait until rising_edge(clk_tst);
             wait for 2 ns;
+            check(data_out_tst(0) = data_in_tst, "Data shifting check");
             tmp <= tmp + 1;
             wait for 2 ns;
             end loop;
