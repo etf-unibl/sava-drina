@@ -19,7 +19,6 @@ architecture arch of dual_edge_detector_tb is
 -- signals
 signal p_test      : std_logic;
 signal p_comp      : std_logic;
-signal indeks      : integer := 0;
 signal clk_test    : std_logic;
 signal rst_test    : std_logic;
 signal strobe_test : std_logic;
@@ -70,29 +69,30 @@ end process;
 
 main : process
 
+variable indeks : integer := 0;
 begin
     test_runner_setup(runner, runner_cfg);
 
     while test_suite loop
       if run("detect_edge") then
       Info("Starting first test for dual edge detector - detecting edge");
-        wait for 5 ns;
+        wait for 50 ns;
         report "The value of length is " & integer'image(c_MEALY_TEST_VECTORS'length);
         if indeks < c_MEALY_TEST_VECTORS'length then
           report "The value of indeks is " & integer'image(indeks);
           strobe_test <= c_MEALY_TEST_VECTORS(indeks).strobe_v;
-          wait for 5 ns;
+          wait for 1 ns;
           p_comp <= c_MEALY_TEST_VECTORS(indeks).p_v;
-          wait for 5 ns;
+          wait for 2 ns;
 	  Info("Starting first test for dual edge detector - detecting edge");
           wait until clk_test'event;
-          wait for 2 ns;
+          wait for 3 ns;
           check(p_test = p_comp, "Test completed");
           wait for 2 ns;
-          indeks <= indeks + 1;
-          wait for 5 ns;
+          indeks := indeks + 1;
+          wait for 2 ns;
         end if;
-      wait for 10 ns;
+      wait for 100 ns;
     end if;
     end loop;
 

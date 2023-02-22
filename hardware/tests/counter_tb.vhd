@@ -25,10 +25,10 @@ architecture tb of counter_tb is
     signal tmp : unsigned (23 downto 0);
 begin
   invdut : entity design_lib.counter
-    port map (clk    => clk_tst,
-              reset  => reset_tst,
-              enable => enable_tst,
-              count  => count_tst);
+    port map (clk_i    => clk_tst,
+              reset_i  => reset_tst,
+              enable_i => enable_tst,
+              count_o  => count_tst);
 
 clk : process
   begin

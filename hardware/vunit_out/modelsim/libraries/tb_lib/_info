@@ -1,0 +1,621 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware
+Ebuffer_l_r_tb
+Z1 w1677102737
+Z2 D^#x9 vunit_lib 13 vunit_context 0 22 BUz5@7o9Unoed9mV`aW1U0
+Z3 DPx9 vunit_lib 18 run_deprecated_pkg 0 22 06HHNn=l0Y?PoSLo8^<h00
+Z4 DPx9 vunit_lib 10 runner_pkg 0 22 Z>eP]LIeXES4:UL[6ONde3
+Z5 DPx9 vunit_lib 7 run_pkg 0 22 ]fB;5o?Y9Dc:7@8[5J3zQ0
+Z6 DPx9 vunit_lib 13 run_types_pkg 0 22 ZfDWW?_fEaQBz>VkefFUV2
+Z7 DPx9 vunit_lib 20 check_deprecated_pkg 0 22 Y>TVz>[kI8XoP@P02gCOJ2
+Z8 DPx9 vunit_lib 9 check_pkg 0 22 @<G[YAZa<Okh:6JBH?7JD0
+Z9 DPx9 vunit_lib 11 checker_pkg 0 22 aHm;hAEcA7Ze4VClQ;1<_3
+Z10 DPx9 vunit_lib 18 log_deprecated_pkg 0 22 Q7[lfBh_WC:ca^W64YP1U2
+Z11 DPx9 vunit_lib 9 print_pkg 0 22 z3A9G[B4JdMci]Ub;PK=S3
+Z12 DPx9 vunit_lib 4 path 0 22 ]@TR:IFM`TWfiVL<ZjY=I3
+Z13 DPx9 vunit_lib 8 stop_pkg 0 22 UjKiHFdPQ97>_>m`nM3cg3
+Z14 DPx9 vunit_lib 8 core_pkg 0 22 0M7EG>QDghVT?B78KOYPn0
+Z15 DPx9 vunit_lib 6 id_pkg 0 22 HU`?MIdjo`3g6=idf7>XP1
+Z16 DPx9 vunit_lib 15 log_handler_pkg 0 22 nXdPa`1VHm?9d=UZ]cg`J0
+Z17 DPx9 vunit_lib 8 ansi_pkg 0 22 h9cG]NHf=IYSX>SV5U_OM1
+Z18 DPx9 vunit_lib 14 log_levels_pkg 0 22 jGUFnEUH1mU?HKm3YRPGj3
+Z19 DPx9 vunit_lib 10 logger_pkg 0 22 9nPheBS@bT874<hoS?FaX1
+Z20 DPx9 vunit_lib 10 dictionary 0 22 _W8>On_YoEFWEDP8TQC@R0
+Z21 D^#x9 vunit_lib 18 data_types_context 0 22 [Ik[<YbW8Ag;h5P``aP2g3
+Z22 DPx9 vunit_lib 8 dict_pkg 0 22 DZofdIDPKj^6>SCK2ibBP0
+Z23 DPx9 vunit_lib 19 byte_vector_ptr_pkg 0 22 nMb7G]QlQkbCia?ecQlOB1
+Z24 DPx9 vunit_lib 19 string_ptr_pool_pkg 0 22 ;oGa_UEi8nVncYkDRR_Aj1
+Z25 DPx9 vunit_lib 14 queue_pool_pkg 0 22 W_@1eWPT4E>cBF2g>m`PC0
+Z26 DPx9 vunit_lib 10 string_ops 0 22 >6lVd?dSYVCeeU;1?_=bg2
+Z27 DPx9 vunit_lib 22 data_types_private_pkg 0 22 =j2oKIJ>9=Cgn][?6oR7=3
+Z28 DPx9 vunit_lib 17 integer_array_pkg 0 22 BT87f0J6MiE^QUEHRhVn?2
+Z29 DPx9 vunit_lib 19 external_string_pkg 0 22 iE_JL@S7G[ScLPziLPH3]3
+Z30 DPx9 vunit_lib 14 string_ptr_pkg 0 22 n[AzFb_A:6S@HQFZYcL]h0
+Z31 DPx9 vunit_lib 9 queue_pkg 0 22 8UT9O0e]z@k9l=7oC[mfg3
+Z32 DPx9 vunit_lib 27 integer_vector_ptr_pool_pkg 0 22 FX=7VbM]W@D7RN`^3N8aJ3
+Z33 DPx9 vunit_lib 17 codec_builder_pkg 0 22 lMzaQB]AGo[9c?7g60J_93
+Z34 DPx4 ieee 11 numeric_bit 0 22 G2;d`f^X6V]cQEn8_38:i1
+Z35 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+Z36 DPx4 ieee 12 math_complex 0 22 lndMRF4<kJnT_9]@:30S@3
+Z37 DPx9 vunit_lib 9 codec_pkg 0 22 VE]>YKnj@eiUJ<U1YSEXb3
+Z38 DPx9 vunit_lib 27 external_integer_vector_pkg 0 22 hl?S7F7[zeX8D09=mXj_W2
+Z39 DPx9 vunit_lib 22 integer_vector_ptr_pkg 0 22 dQHde;mb=n>VUWALE0?M33
+Z40 DPx9 vunit_lib 9 types_pkg 0 22 8X1EBI95Q8hI=Vi3D9DP;0
+Z41 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z42 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z43 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 4
+R0
+Z44 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\buffer_l_r_tb.vhd
+Z45 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\buffer_l_r_tb.vhd
+l0
+Z46 L16 1
+VG0MlW;7l[5:03`Q<<113j3
+!s100 eB80:IagoY5@PRgk6T10V0
+Z47 OV;C;2020.1;71
+33
+Z48 !s110 1677102749
+!i10b 1
+Z49 !s108 1677102748.000000
+Z50 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|tb_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\buffer_l_r_tb.vhd|
+!s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\buffer_l_r_tb.vhd|
+!i113 1
+Z51 o-quiet -2008 -work tb_lib
+Z52 tExplicit 1 CvgOpt 0
+Atb
+DEx10 design_lib 10 buffer_l_r 0 22 5ho8=UYbzDhLG>m<8zRm70
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+DEx4 work 13 buffer_l_r_tb 0 22 G0MlW;7l[5:03`Q<<113j3
+!i122 4
+l28
+L20 62
+V1z0K2JDGfMa6<F@[Yo6kE3
+!s100 Z7zoHQ3J61NmC`3<1hD3l1
+R47
+33
+R48
+!i10b 1
+R49
+R50
+Z53 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\buffer_l_r_tb.vhd|
+!i113 1
+R51
+R52
+Ecounter_tb
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+!i122 3
+R0
+Z54 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\counter_tb.vhd
+Z55 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\counter_tb.vhd
+l0
+R46
+VU:i>Y0Sazmn>a_BG9U[Y41
+!s100 j6<Yn=`d1;BdmnP7c=1IL3
+R47
+33
+Z56 !s110 1677102748
+!i10b 1
+R49
+Z57 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|tb_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\counter_tb.vhd|
+Z58 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\counter_tb.vhd|
+!i113 1
+R51
+R52
+Atb
+DEx10 design_lib 7 counter 0 22 oWDk9_3j8H]>G`n1J@OiY1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+DEx4 work 10 counter_tb 0 22 U:i>Y0Sazmn>a_BG9U[Y41
+!i122 3
+l26
+L20 58
+V?g=iQ`REnU2HjE<o4TKYP0
+!s100 4hCA_aIdFPH4ZODRZOcl^0
+R47
+33
+R56
+!i10b 1
+R49
+R57
+R58
+!i113 1
+R51
+R52
+Edual_edge_detector_tb
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R43
+R42
+R41
+!i122 2
+R0
+Z59 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\dual_edge_detector_tb.vhd
+Z60 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\dual_edge_detector_tb.vhd
+l0
+L13 1
+VgnL>Se61IUFJI]4CL>OWm2
+!s100 h8`O4V;j?L]kLM89UO<zX1
+R47
+33
+R56
+!i10b 1
+R49
+Z61 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|tb_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\dual_edge_detector_tb.vhd|
+Z62 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\dual_edge_detector_tb.vhd|
+!i113 1
+R51
+R52
+Aarch
+DEx10 design_lib 18 dual_edge_detector 0 22 4[WO0<PSM@27=T9NcIT]i3
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R43
+R42
+R41
+DEx4 work 21 dual_edge_detector_tb 0 22 gnL>Se61IUFJI]4CL>OWm2
+!i122 2
+l42
+L17 85
+VFnGSE;Iaj00[J_8;l:bYK3
+!s100 1?J@O@4Nfa9RlfYdB?LUD2
+R47
+33
+R56
+!i10b 1
+R49
+R61
+R62
+!i113 1
+R51
+R52
+Eshift_register_tb
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+!i122 1
+R0
+Z63 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\shift_register_tb.vhd
+Z64 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\shift_register_tb.vhd
+l0
+R46
+V:n`eWUonjfHodY[nHlII82
+!s100 j7T0H=G>eneIPI;1b]Zaa2
+R47
+33
+R56
+!i10b 1
+R49
+Z65 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|tb_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\shift_register_tb.vhd|
+Z66 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\shift_register_tb.vhd|
+!i113 1
+R51
+R52
+Atb
+DEx10 design_lib 14 shift_register 0 22 MWL@Me=OboMfP=P4Fh^AV2
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+DEx4 work 17 shift_register_tb 0 22 :n`eWUonjfHodY[nHlII82
+!i122 1
+l28
+L20 81
+V5^c82XcIALPaXHSOIS1Ok0
+!s100 5zkFDBYT3Jnl4Bh251chX3
+R47
+33
+R56
+!i10b 1
+R49
+R65
+R66
+!i113 1
+R51
+R52
+Etx_tb
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+!i122 0
+R0
+Z67 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\tx_tb.vhd
+Z68 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\tx_tb.vhd
+l0
+R46
+V?I<NQD?1E^^iRGR]oU?6j0
+!s100 G>1HoOIHXD@^j15HFSB>K0
+R47
+33
+R56
+!i10b 1
+R49
+Z69 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|tb_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\tx_tb.vhd|
+Z70 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\tb_lib\tx_tb.vhd|
+!i113 1
+R51
+R52
+Atb
+DEx10 design_lib 2 tx 0 22 m_g?5=B7<6S0hmZ]DLNEH3
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R12
+R13
+R14
+R15
+R16
+R17
+R18
+R19
+R20
+R21
+R22
+R23
+R24
+R25
+R26
+R27
+R28
+R29
+R30
+R31
+R32
+R33
+R34
+R35
+R36
+R37
+R38
+R39
+R40
+R41
+R42
+R43
+DEx4 work 5 tx_tb 0 22 ?I<NQD?1E^^iRGR]oU?6j0
+!i122 0
+l29
+L20 119
+Ve;X35lGZYjCUEOO_7RXii3
+!s100 BAiUTPEMEQH<8:FLJdLe=1
+R47
+33
+R56
+!i10b 1
+R49
+R69
+R70
+!i113 1
+R51
+R52

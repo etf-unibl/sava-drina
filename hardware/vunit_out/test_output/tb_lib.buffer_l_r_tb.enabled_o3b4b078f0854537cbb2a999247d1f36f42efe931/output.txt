@@ -1,0 +1,6 @@
+# vsim -modelsimini C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/modelsim/modelsim.ini -wlf C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.buffer_l_r_tb.enabled_o3b4b078f0854537cbb2a999247d1f36f42efe931/modelsim/vsim.wlf -quiet -t ps -onfinish stop tb_lib.buffer_l_r_tb(tb) -L vunit_lib -L design_lib -L tb_lib -g/buffer_l_r_tb/runner_cfg="active python runner : true,enabled_test_cases : enabled_output,output path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.buffer_l_r_tb.enabled_o3b4b078f0854537cbb2a999247d1f36f42efe931/,tb path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/tests/,use_color : true" 
+# Start time: 22:52:30 on Feb 22,2023
+# ** Warning: Design size of 23552 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# Break in Subprogram stop at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13
+# Stopped at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13

@@ -1,0 +1,226 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware
+Ebuffer_l_r
+Z1 w1677102737
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 4
+R0
+Z5 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\buffer_l_r.vhd
+Z6 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\buffer_l_r.vhd
+l0
+Z7 L46 1
+V5ho8=UYbzDhLG>m<8zRm70
+!s100 c`>?k3jF[?Z8HcJSOIcH51
+Z8 OV;C;2020.1;71
+33
+Z9 !s110 1677102738
+!i10b 1
+Z10 !s108 1677102738.000000
+Z11 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\buffer_l_r.vhd|
+!s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\buffer_l_r.vhd|
+!i113 1
+Z12 o-quiet -2008 -work design_lib
+Z13 tExplicit 1 CvgOpt 0
+Abehavioral
+R2
+R3
+R4
+DEx4 work 10 buffer_l_r 0 22 5ho8=UYbzDhLG>m<8zRm70
+!i122 4
+l55
+L54 9
+VG`Pb:>NeIo_W6K2Ua646l2
+!s100 5K72A5D:doXh:l[fCHdNM2
+R8
+33
+R9
+!i10b 1
+R10
+R11
+Z14 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\buffer_l_r.vhd|
+!i113 1
+R12
+R13
+Ecounter
+R1
+R2
+R3
+R4
+!i122 3
+R0
+Z15 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\counter.vhd
+Z16 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\counter.vhd
+l0
+L50 1
+VoWDk9_3j8H]>G`n1J@OiY1
+!s100 TnnA6^J8P;1V9OK0FIbD>2
+R8
+33
+R9
+!i10b 1
+R10
+Z17 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\counter.vhd|
+Z18 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\counter.vhd|
+!i113 1
+R12
+R13
+Aarch
+R2
+R3
+R4
+DEx4 work 7 counter 0 22 oWDk9_3j8H]>G`n1J@OiY1
+!i122 3
+l63
+L59 20
+V^anKaUA`MWlX4YM;X9@Le1
+!s100 4I=e_C:Fh[TDbb0I<cP>B2
+R8
+33
+R9
+!i10b 1
+R10
+R17
+R18
+!i113 1
+R12
+R13
+Edual_edge_detector
+R1
+R2
+R3
+R4
+!i122 2
+R0
+Z19 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\dual_edge_detector.vhd
+Z20 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\dual_edge_detector.vhd
+l0
+L45 1
+V4[WO0<PSM@27=T9NcIT]i3
+!s100 <j^ScK?4oo_jijGkKLWDY0
+R8
+33
+R9
+!i10b 1
+R10
+Z21 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\dual_edge_detector.vhd|
+Z22 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\dual_edge_detector.vhd|
+!i113 1
+R12
+R13
+Aarch
+R2
+R3
+R4
+DEx4 work 18 dual_edge_detector 0 22 4[WO0<PSM@27=T9NcIT]i3
+!i122 2
+l63
+L57 55
+VRC1X@AQ@]z7iIn]>?]am]0
+!s100 HomZXDWL3U`M?haXleL3;0
+R8
+33
+R9
+!i10b 1
+R10
+R21
+R22
+!i113 1
+R12
+R13
+Eshift_register
+R1
+R2
+R3
+R4
+!i122 1
+R0
+Z23 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\shift_register.vhd
+Z24 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\shift_register.vhd
+l0
+R7
+VMWL@Me=OboMfP=P4Fh^AV2
+!s100 1Uc7YYjoYFTL<G>M5cjJz1
+R8
+33
+R9
+!i10b 1
+R10
+Z25 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\shift_register.vhd|
+Z26 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\shift_register.vhd|
+!i113 1
+R12
+R13
+Areg_arch
+R2
+R3
+R4
+DEx4 work 14 shift_register 0 22 MWL@Me=OboMfP=P4Fh^AV2
+!i122 1
+l59
+L56 23
+V`P^NGT__M=aFB:X>P8[=m2
+!s100 ZOVPMObgaW_ZHAFHI;o492
+R8
+33
+R9
+!i10b 1
+R10
+R25
+R26
+!i113 1
+R12
+R13
+Etx
+R1
+R2
+R3
+R4
+!i122 0
+R0
+Z27 8C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\tx.vhd
+Z28 FC:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\tx.vhd
+l0
+L48 1
+Vm_g?5=B7<6S0hmZ]DLNEH3
+!s100 74O1PV5k?^X4lYYb?Uo=X1
+R8
+33
+R9
+!i10b 1
+R10
+Z29 !s90 -quiet|-modelsimini|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\modelsim\modelsim.ini|-2008|-work|design_lib|C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\tx.vhd|
+Z30 !s107 C:\Users\AMG_Computers\Desktop\Faks\PDS_projekat\sava-drina\hardware\vunit_out\preprocessed\design_lib\tx.vhd|
+!i113 1
+R12
+R13
+Aarch
+R2
+R3
+R4
+DEx4 work 2 tx 0 22 m_g?5=B7<6S0hmZ]DLNEH3
+!i122 0
+l112
+L61 121
+VWGb_Wc[L5hLCBmUnom@Ym3
+!s100 LXIK:KbR>Flad]kOjCUP;0
+R8
+33
+R9
+!i10b 1
+R10
+R29
+R30
+!i113 1
+R12
+R13

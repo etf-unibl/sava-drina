@@ -1,0 +1,28 @@
+# End time: 22:52:35 on Feb 22,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+# vsim -modelsimini C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/modelsim/modelsim.ini -wlf C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.tx_tb.left_channel_d1c83926b5ede3fa19d6dedea7361a1bc95de5fc/modelsim/vsim.wlf -quiet -t ps -onfinish stop tb_lib.tx_tb(tb) -L vunit_lib -L design_lib -L tb_lib -g/tx_tb/runner_cfg="active python runner : true,enabled_test_cases : left_channel,output path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.tx_tb.left_channel_d1c83926b5ede3fa19d6dedea7361a1bc95de5fc/,tb path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/tests/,use_color : true" 
+# Start time: 22:52:35 on Feb 22,2023
+# ** Warning: Design size of 23965 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Note:  Result of  i = 0
+#    Time: 100 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 10012 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of  i = 1
+#    Time: 10026 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 20012 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of  i = 2
+#    Time: 20026 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 30012 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of  i = 3
+#    Time: 30026 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 40012 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of  i = 4
+#    Time: 40026 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 50012 ns  Iteration: 0  Instance: /tx_tb
+# Break in Subprogram stop at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13
+# Stopped at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/stop_body_2008p.vhd line 13

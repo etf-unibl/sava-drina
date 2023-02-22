@@ -1,0 +1,51 @@
+# End time: 22:52:36 on Feb 22,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
+# vsim -modelsimini C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/modelsim/modelsim.ini -wlf C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.tx_tb.right_channel_88cb8bac74eb90a1470b58fec5b1fd304c48c926/modelsim/vsim.wlf -quiet -t ps -onfinish stop tb_lib.tx_tb(tb) -L vunit_lib -L design_lib -L tb_lib -g/tx_tb/runner_cfg="active python runner : true,enabled_test_cases : right_channel,output path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/test_output/tb_lib.tx_tb.right_channel_88cb8bac74eb90a1470b58fec5b1fd304c48c926/,tb path : C::/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/tests/,use_color : true" 
+# Start time: 22:52:36 on Feb 22,2023
+# ** Warning: Design size of 23965 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# ** Note:  Result of i = 0
+#    Time: 101 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 5013 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of i = 1
+#    Time: 5028 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 15013 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of i = 2
+#    Time: 15028 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of tmp = 0
+#    Time: 25013 ns  Iteration: 0  Instance: /tx_tb
+# ** Note:  Result of i = 3
+#    Time: 25028 ns  Iteration: 0  Instance: /tx_tb
+#      [22;96;49m35012000 ps[0m - [1;37;49mcheck[0m                -   [1;31;49mERROR[0m - Shifting data from right channel (tx_tb.vhd:118)
+# ** Failure: Stop simulation on log level error
+#    Time: 35012 ns  Iteration: 0  Process: /tx_tb/main File: C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/core_pkg.vhd
+# Break in Subprogram core_failure at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/core_pkg.vhd line 84
+# Stopped at C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/core_pkg.vhd line 84
+# 
+# Test Run Failed!
+# 
+# Stack trace result from 'tb' command
+#  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/core/src/core_pkg.vhd 84 return [address 0xff1bd9ca] Subprogram core_failure
+# called from  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/logging/src/logger_pkg-body.vhd 736 return [address 0xff1d172e] Subprogram decrease_stop_count
+# called from  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/logging/src/logger_pkg-body.vhd 731 return [address 0xff1d1816] Subprogram decrease_stop_count
+# called from  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/logging/src/logger_pkg-body.vhd 910 return [address 0xff1cc67d] Subprogram log
+# called from  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/check/src/checker_pkg-body.vhd 121 return [address 0xff1def4c] Subprogram failing_check
+# called from  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/check/src/check.vhd 196 return [address 0xff1e0a43] Subprogram check
+# called from  C:/Users/AMG_Computers/AppData/Local/Programs/Python/Python310/Lib/site-packages/vunit_hdl-4.6.1rc0-py3.10.egg/vunit/vhdl/check/src/check.vhd 226 return [address 0xff1e0c53] Subprogram check
+# called from  C:/Users/AMG_Computers/Desktop/Faks/PDS_projekat/sava-drina/hardware/vunit_out/preprocessed/tb_lib/tx_tb.vhd 118 return [address 0xff54ca68] Process main
+# 
+# 
+# Surrounding code from 'see' command
+#   79 :   begin
+#   80 :     if core_failure_is_mocked then
+#   81 :       set(core_failure_mock_state, core_failure_called_idx, 1);
+#   82 :       reallocate(to_string_ptr(get(core_failure_mock_state, core_failure_message_idx)), msg);
+#   83 :     else
+# ->84 :       report msg severity failure;
+#   85 :     end if;
+#   86 :   end;
+#   87 : 
+#   88 :   procedure check_core_failure(msg : string := "") is
+# 
