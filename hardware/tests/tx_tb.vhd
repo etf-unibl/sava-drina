@@ -49,10 +49,10 @@ end process;
 bclk_proc : process
 begin
   bclk_tst <= '0';
-  wait for 10 ns;
+  wait for 20 ns;
     while start_stimuli loop
 	   bclk_tst <= not (bclk_tst);
-		  wait for 10 ns;
+		  wait for 20 ns;
 	 end loop;
 end process;
 
@@ -75,14 +75,14 @@ begin
 
 	  if run("left_channel") then
 	    start_stimuli <= true;
-            wait for 100 ns;
+            wait for 10 ns;
             while i < 5 loop
             report " Result of  i = " & integer'image(i);
-            wait for 1 ns;
+            wait for 5 ns;
             wait until ws_tst = '0';
-            wait for 1 ns;
+            wait for 100 ns;
             l_data_tst <= l_data_tst xor tmp_v;
-            while tmp < 1 loop
+            while tmp < 24 loop
             wait for 1 ns;
             wait until rising_edge(bclk_tst);
             wait for 1 ns;
@@ -98,27 +98,24 @@ begin
             wait for 1 ns;
             tmp_v := tmp_v(13 downto 0) & "1011011010";
             i := i + 1;
-            wait for 10 ns;
+            wait for 100 ns;
             end loop;
 
           elsif run("right_channel") then
 	    start_stimuli <= true;
             wait for 100 ns;
-            wait for 1 ns;
             while i < 5 loop
             report " Result of i = " & integer'image(i);
             wait for 1 ns;
             r_data_tst <= r_data_tst xor tmp_v;
-            while tmp < 1 loop
+            while tmp < 24 loop
             wait for 1 ns;
             wait until ws_tst = '1';
-            wait for 2 ns;
+            wait for 100 ns;
             wait until rising_edge(bclk_tst);
             wait for 2 ns;
             check(sd_tst = r_data_tst(tmp), "Shifting data from right channel");
-            wait for 1 ns;
             report " Result of tmp = " & integer'image(tmp);
-            wait for 1 ns;
             tmp := tmp + 1;
             wait for 1 ns;
             end loop;
@@ -128,7 +125,7 @@ begin
             tmp_v := tmp_v(17 downto 0) & "110110";
             wait for 1 ns;
             i := i + 1;
-            wait for 10 ns;
+            wait for 100 ns;
             end loop;
           end if;
        end loop;
