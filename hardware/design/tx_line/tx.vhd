@@ -47,14 +47,14 @@ use ieee.numeric_std.all;
 
 entity tx is
 
-	port
-	(
-	 data_left_i  : in std_logic_vector (23 downto 0);--! Input buffer for left channel
-	 data_right_i : in std_logic_vector (23 downto 0);--! Input buffer for right channel
-	 clk_i        : in std_logic;--! Input clock signal
-	 bclk_i       : in std_logic; --! Input i2s clock signal
-	 ws_i         : in std_logic;--! Input word select signal
-	 data_o       : out std_logic);--! Output serial data signal
+        port
+        (
+         data_left_i  : in std_logic_vector (23 downto 0); --! Input buffer for left channel
+         data_right_i : in std_logic_vector (23 downto 0); --! Input buffer for right channel
+         clk_i        : in std_logic; --! Input clock signal
+         bclk_i       : in std_logic; --! Input i2s clock signal
+         ws_i         : in std_logic; --! Input word select signal
+         data_o       : out std_logic); --! Output serial data signal
 end tx;
 
 
@@ -74,21 +74,21 @@ signal data_r        : std_logic_vector(23 downto 0) := (others => '0');
 
 component buffer_l_r
   port(
-	    write_enable     : in std_logic;
-	    clk_i            : in std_logic;
-            data_i           : in std_logic_vector(23 downto 0);
-	    data_o           : out std_logic_vector(23 downto 0));
+       write_enable     : in std_logic;
+       clk_i            : in std_logic;
+       data_i           : in std_logic_vector(23 downto 0);
+       data_o           : out std_logic_vector(23 downto 0));
 end component;
 
 
 component counter
-  port( 
+  port(
        clk_i    : in std_logic;
        reset_i  : in std_logic;
        enable_i : in std_logic;
        count_o  : out std_logic_vector (23 downto 0));
 end component;
-  
+
 
 
 component dual_edge_detector
@@ -109,7 +109,7 @@ component shift_register
 end component;
 
 
-begin 
+begin
 ws_detector : dual_edge_detector
   port map(
            clk_i    => clk_i,
@@ -158,8 +158,8 @@ shift_reg_l : shift_register
           reset_i    => reset_r,
           enable_i   => en_left_line,
           data_i     => data_l,
-	  data_o     => sd_l_o);
-			 
+          data_o     => sd_l_o);
+
 shift_reg_r : shift_register
   port map(
           clk_i    => clk_i,
