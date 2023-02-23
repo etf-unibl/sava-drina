@@ -4,11 +4,11 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name: dual_edge_detector
+-- unit name: buffer_l_r.vhd
 --
 -- description:
 --
---   This file implements a dual-edge detector circuit using Melay FSM logic.
+--   This file implements 24-bit buffer
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -60,5 +60,3 @@ begin
         end if;
     end process;
 end architecture;
-
-
