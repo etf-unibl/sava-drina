@@ -88,7 +88,7 @@ architecture arch of sava_top_level is
       sd_i     : in  std_logic; --! Input serial data signal
       ws_i     : in  std_logic; --! Input word select signal
       clk_i    : in  std_logic; --! Input clock signal
-      sck_i    : in  std_logic; --! Input i2s clock signal
+      bclk_i    : in  std_logic; --! Input i2s clock signal
       data_l_o : out std_logic_vector(23 downto 0); --! Output signal for left channel
       data_r_o : out std_logic_vector(23 downto 0)  --! Output signal for right channel
     );
@@ -100,17 +100,11 @@ architecture arch of sava_top_level is
       data_left_i  : in  std_logic_vector(23 downto 0); --! Input buffer for left channel
       data_right_i : in  std_logic_vector(23 downto 0); --! Input buffer for right channel
       clk_i        : in  std_logic; --! Input clock signal
-      scl_i        : in  std_logic; --! Input i2s clock signal
-      sd_o         : out std_logic  --! Output serial data signal
+      bclk_i        : in  std_logic; --! Input i2s clock signal
+      data_o         : out std_logic  --! Output serial data signal
     );
   end component;
 
-  component modulation
-    port(
-
-
-    );
-  end component;
 
 begin
   codec_conf : loop_back
@@ -124,23 +118,17 @@ begin
   port map(sd_i         => sd_i,
            ws_i         => ws_i,
            clk_i        => clk_i,
-           sck_i        => sck_i,
-           data_left_o  => data_left,
-           data_right_o => data_right);
+           bclk_i       => sck_i,
+           data_l_o     => data_left,
+           data_r_o     => data_right);
 
   transmitter : tx_line
   port map(ws_i         => ws_i,
            clk_i        => clk_i,
-           sck_i        => sck_i,
+           bclk_i       => sck_i,
            data_left_i  => data_left,
            data_right_i => data_right,
-           sd_o         => sd_o);
-		   
-  modulator : modulation
-  port map(
-
-
-  );
+           data_o       => sd_o);
 
   ws_o <= ws_i;
 end arch;
