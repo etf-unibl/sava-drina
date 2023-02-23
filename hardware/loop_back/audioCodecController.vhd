@@ -35,28 +35,36 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file audioCodecController.vhd
+--! @brief This file implements controller for the Wolfson audio codec.
+--! @details An audio codec device can digitize an analog audio signal and convert the digitized signal back to analog format.
+--! The DE1 board contains a Wolfson WM8731 codec device.
+--! Uses I2C to initialize and send data to the codec
+--! Data is stored in a 24x10 bit ROM component.
 
--- Controller for the Wolfson audio codec
--- Uses I2C to initialize and send data to the codec
--- Data is stored in a 24x10 bit ROM component.
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
+--! @brief Entity description for audio codec controller.
+--! @details Entity contains inputs and outputs to send an I2C packet, set up WM8731, to transmit and receive audio data.
 
 entity audioCodecController is
   port(
-    clock50MHz_i        : in  std_logic;
-    reset_i             : in  std_logic;
-    I2C_SCLK_Internal_o : out std_logic;
-    I2C_SDAT_Internal_o : out std_logic;
-    SDAT_Control_o      : out std_logic;
-    -- for testing
-    clock50KHz_o        : out std_logic
+    clock50MHz_i        : in  std_logic; --! Master clock - input signal
+    reset_i             : in  std_logic; --! Reset signal - input signal
+    I2C_SCLK_Internal_o : out std_logic; --! Used for serial clock
+    I2C_SDAT_Internal_o : out std_logic; --! Used for serial data
+    SDAT_Control_o      : out std_logic; --! Serial data control
+    clock50KHz_o        : out std_logic  --! For testing
   );
 end audioCodecController;
-
+--! @ brief Architecture definition for audoCodecController.
+--! @details The architecture using components whose roles will be described below.
+--! datBitCounter counts the number of data bits sent.
+--! ROMcontroller storing codec initialization data, 10 words, 24 bits each
 architecture arch of audioCodecController is
-  -- 50kHz SCLK
+  --! 50kHz SCLK
   component clock50KHz is
     port(
       clock_i      : in  std_logic;
@@ -64,23 +72,22 @@ architecture arch of audioCodecController is
       clock50KHz_o : out std_logic
     );
   end component;
-  -- counts the number of data bits sent
+--! dataBitCounter component
   component dataBitCounter is
     port(
-      -- active high count enable
+      --! Active high count enable
       countEnable_i      : in  std_logic;
-      -- active high reset
+      --! Active high reset
       reset_i            : in  std_logic;
       clock_i            : in  std_logic;
       currentBitCount_o  : out integer;
       currentWordCount_o : out integer
     );
   end component;
-  -- ROM storing codec initialization data
-  -- 10 words, 24 bits each
+--! ROMcontroller component
   component ROMcontroller is
     port(
-      -- asynch active-high reset
+      --! Asynchronous active-high reset
       reset_i      : in  std_logic;
       increment_i  : in  std_logic;
       clock50KHz_i : in  std_logic;
@@ -89,22 +96,22 @@ architecture arch of audioCodecController is
     );
   end component;
 
-  -- 50KHz clock used for SCLK
+  --! 50KHz clock used for SCLK
   signal clock50KHz_Internal : std_logic;
-  -- internal signals
+  --! Internal signals
   signal SDAT_Temp,SCLK_Temp : std_logic;
-  -- starts/stops the data bit counter
+  --! Starts/stops the data bit counter
   signal bitCountEnable      : std_logic;
-  -- start incrementing the ROM each clock cycle
+  --! Start incrementing the ROM each clock cycle
   signal incrementROM        : std_logic;
-  -- the 24 bits of data to be sent
+  --! The 24 bits of data to be sent
   signal ROM_data_vector_24  : std_logic_vector(23 downto 0);
-  -- track bit in current set of data (0 -> 23)
+  --! Track bit in current set of data (0 -> 23)
   signal currentDataBit      : integer;
-  -- trach current 24-bit word in ROM
+  --! Track current 24-bit word in ROM
   signal currentDataWord     : integer;
 
-  -- each state places one bit on the SDAT wire
+  --! Each state places one bit on the SDAT wire
   type t_I2CState is (resetState, startCondition, sendData, acknowledge, prepForStop, stopCondition);
   signal I2C_state           : t_I2CState;
 begin
@@ -119,33 +126,32 @@ begin
                                                 clock50MHz_i => clock50MHz_i,
                                                 ROMword_o    => ROM_data_vector_24);
 
-  -- FSM that sends start condition, address, write bit = 0,
-  -- then waits for ack from the codec
+  --! FSM that sends start condition, address, write bit = 0,then waits for ack from the codec
   i2c : process(clock50KHz_Internal,reset_i)
   begin
-    -- asynchronous active-high reset
+    --! Asynchronous active-high reset
     if reset_i = '0' then
       if rising_edge(clock50KHz_Internal) then
         case I2C_state is
           when resetState =>
-            -- place both wires high to prepare for the start condition
+            --! Place both wires high to prepare for the start condition
             SDAT_Temp <= '1';
             SCLK_Temp <= '1';
             I2C_state <= startCondition;
             incrementROM <= '0';
           when startCondition =>
-            -- pull the SDAT line low -> the start condition
+            --! Pull the SDAT line low -> the start condition
             SDAT_Temp <= '0';
             I2C_state <= sendData;
-            -- start counting data bits on the next clock cycle
+            --! Start counting data bits on the next clock cycle
             bitCountEnable <= '1';
           when sendData =>
-            -- release the clock
+            --! Release the clock
             SCLK_Temp <= '0';
             SDAT_Control_o <= '1';
-            -- send the next data bit
+            --! Send the next data bit
             SDAT_Temp <= ROM_data_vector_24(currentDataBit);
-            -- is it time for the ack bit?
+            --! Is it time for the ack bit?
             if (currentDataBit = 16) or (currentDataBit = 8) or (currentDataBit = 0) then
               I2C_state <= acknowledge;
               bitCountEnable <= '0';
@@ -153,9 +159,9 @@ begin
               I2C_state <= sendData;
             end if;
           when acknowledge =>
-            -- To allow the codec to pull SDAT low, SDAT must be set to Z
+            --! To allow the codec to pull SDAT low, SDAT must be set to Z
             SDAT_Control_o <= '0';
-            -- if all 24 bits sent, end the transmission
+            --! If all 24 bits sent, end the transmission
             if currentDataBit = 23 then
               I2C_state <= prepForStop;
             else
@@ -163,16 +169,16 @@ begin
               bitCountEnable <= '1';
             end if;
           when prepForStop =>
-            -- take control of SDAT line again
+            --! Take control of SDAT line again
             SDAT_Control_o <= '1';
-            -- pull SCLK high, and set SDAT low to prep for stop condition
+            --! Pull SCLK high, and set SDAT low to prep for stop condition
             SCLK_Temp <= '1';
             SDAT_Temp <= '0';
             I2C_state <= stopCondition;
           when stopCondition =>
-            -- keep SCLK high, and pull SDAT high as stop condition
+            --! Keep SCLK high, and pull SDAT high as stop condition
             SDAT_TEMP <= '1';
-            -- more data words to send?
+            --! More data words to send?
             if currentDataWord < 10 then
               incrementROM <= '1';
               I2C_state <= resetState;
@@ -191,11 +197,10 @@ begin
     end if;
   end process i2c;
   I2C_SDAT_Internal_o <= SDAT_Temp;
-  -- use the 50KHz clock to drive the state machine, and the (not 50KHz) clock to drive the
-  -- codec. The Half-period delay allows the SDAT data to stabilize on the line before
-  -- being read by the codec
+  --! Use the 50KHz clock to drive the state machine, and the (not 50KHz) clock to drive the codc.
+  --! The Half-period delay allows the SDAT data to stabilize on the line before being read by the codec.
   I2C_SCLK_Internal_o <= SCLK_Temp or (not clock50KHz_Internal);
 
-  -- for testing purposes
+  --! For testing purposes
   clock50KHz_o <= clock50KHz_Internal;
 end arch;

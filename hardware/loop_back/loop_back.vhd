@@ -35,34 +35,50 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file loop_back.vhd
+--! @brief This unit creates loopback operation.
+--! @details The loopback operation refers to a process where an analog audio signal is converted
+--! to digital by an ADC (Analog-to-Digital Converter), processed or manipulated digitally, and then converted back
+--! to analog by a DAC (Digital-to-Analog Converter) for output.
 
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
 
+--! @brief Entity description for loop_back.
+--! @details Entity contains inputs for key and 50MHz MCLK clock. I2C_SCLK_O and I2C_SDAT_b are signals for I2C protocol.
+--! Signals with prefix "AUD_" are signals for audio codec.
 entity loop_back is
   port(
     KEY_i          : in    std_logic_vector(0 downto 0);
     CLOCK_50_i     : in    std_logic;
-    -- I2C ports
+    --! I2C ports
     I2C_SCLK_o     : out   std_logic;
     I2C_SDAT_b     : inout std_logic;
-    -- audio codec ports
+    --! Audio codec ports
     AUD_ADCDAT_i   : in    std_logic;
     AUD_ADCLRCK_o  : out   std_logic;
     AUD_DACLRCK_o  : out   std_logic;
     AUD_DACDAT_o   : out   std_logic;
     AUD_XCK_o      : out   std_logic;
     AUD_BCLK_o     : out   std_logic;
-    -- output for logic analyzer
+    --! Output for logic analyzer
     GPIO_0_b       : inout std_logic_vector (7 downto 0);
     LEDR_o         : out   std_logic_vector (0 downto 0)
   );
 end loop_back;
 
+--! @brief Architecture definition for loop_back.
+--! @details The architecture enables loopback operation using components whose roles will be described below.
+--! clockBuffer component is PLL component from MegaWizard. Both input and output are 50MHz.
+--! audioPLLClock component gives 18.42105 MHz from 50 MHz MCLK.
+--! audioCodecController is O2C controller to drive the Wolfson codec.
+--! delayCounter waits 40ms, then asserts high output.
+--! AdcDacController generates digital audio interface clock signals, starts after delayCounter asserts (40ms).
 architecture arch of loop_back is
 
-  -- PLL component from MegaWizard
-  -- both input and output are 50MHz
+--! clockBuffer component
   component clockBuffer is
     port
     (
@@ -72,17 +88,17 @@ architecture arch of loop_back is
     );
   end component;
 
-  -- 18.42105 MHz MCLK
+--! audioPLLClock component
   component audioPLLClock is
     port(
-      -- active high reset
+      --! Active high reset
       refclk   : in  std_logic  := '0';
       rst      : in  std_logic  := '0';
       outclk_0 : out std_logic
     );
   end component;
 
-  -- I2C controller to drive the Wolfson codec
+--! audiCodecController component
   component audioCodecController is
     port(
       clock50MHz_i        : in std_logic;
@@ -96,27 +112,26 @@ architecture arch of loop_back is
     );
   end component;
 
-  -- waits 40ms, then asserts high output
+--! delayCounter component
   component delayCounter is
     port(
       clock_i    : in  std_logic;
       reset_i    : in  std_logic;
-      -- active high reset
+      --! Active high reset
       resetAdc_o : out std_logic
     );
   end component;
 
-  -- generates digital audio interface clock signals
-  -- starts after delayCounter asserts (40ms)
+--! AdcDacController component
   component AdcDacController is
     port(
-      -- reset signal starts '0', then goes to '1' after 40 ms => active-low
+      --! Reset signal starts '0', then goes to '1' after 40 ms => active-low
       resetn_i      : in std_logic;
-      -- from 50MHz PLL at toplevel
+      --! From 50MHz PLL at toplevel
       clock18MHz_i  : in std_logic;
-      -- line-in on the DE1
+      --! Line-in on the DE1
       adcData_i     : in std_logic;
-      -- line-out on the DE1
+      --! Line-out on the DE1
       dacData_o     : out std_logic;
       bitClock_o    : out std_logic;
       dacLRSelect_o : out std_logic;
@@ -124,42 +139,42 @@ architecture arch of loop_back is
     );
   end component;
 
-  -- clock signal from the PLL clockBuffers
+  --! Clock signal from the PLL clockBuffers
   signal clock50MHz    : std_logic;
 
-  -- 18MHz PLL output signal
+  --! 18MHz PLL output signal
   signal clock18MHz     : std_logic;
 
-  -- asynchronous reset for the whole project
+  --! Asynchronous reset for the whole project
   signal reset          : std_logic;
 
-  -- I2C data and clock lines
+  --! I2C data and clock lines
   signal i2cData         : std_logic;
   signal i2cClock        : std_logic;
 
-  -- tri-state buffer control
+  --! Tri-state buffer control
   signal i2cDataControl  : std_logic;
   signal i2cDataTriState : std_logic;
 
-  -- assert signal from delay counter
+  --! Assert signal from delay counter
   signal codecResetn     : std_logic;
 
-  -- audio codec signals
+  --! Audio codec signals
   signal adcDat_sig     : std_logic;
   signal adcLRCK_sig    : std_logic;
   signal dacLRCK_sig    : std_logic;
   signal dacDat_sig     : std_logic;
   signal bck_sig        : std_logic;
 
-  -- for testing
+  --! For testing
   signal clock50KHz     : std_logic;
 
 begin
 
-  -- keys are active low
+  --! Keys are active low
   reset <= not KEY_i(0);
 
-  -- PLLs
+  --! PLLs
   clockBufferInstance : clockBuffer port map(refclk   => CLOCK_50_i,
                                              rst      => reset,
                                              outclk_0 => clock50MHz);
@@ -168,7 +183,7 @@ begin
                                             rst      => reset,
                                             outclk_0 => clock18MHz);
 
-  -- I2C
+  --! I2C
   I2CControllerInstance : audioCodecController port map(clock50MHz_i        => clock50MHz,
                                                         reset_i             => reset,
                                                         I2C_SCLK_Internal_o => i2cClock,
@@ -176,12 +191,12 @@ begin
                                                         SDAT_Control_o      => i2cDataControl,
                                                         clock50KHz_o        => clock50KHz);
 
-  -- Delay counter
+  --! Delay counter
   delayCounterMap : delayCounter port map(clock_i    => clock50MHz,
                                           reset_i    => reset,
                                           resetAdc_o => codecResetn);
 
-  -- Codec Controller
+  --! Codec Controller
   AdcDacControllerMap : AdcDacController port map(resetn_i      => codecResetn,
                                                   clock18MHz_i  => clock18MHz,
                                                   adcData_i     => adcDat_sig,
@@ -190,17 +205,17 @@ begin
                                                   dacLRSelect_o => dacLRCK_sig,
                                                   adcLRSelect_o => adcLRCK_sig);
 
-  -- tri-state data output
+  --! Tri-state data output
   i2cDataTriState <= i2cData when i2cDataControl = '1' else 'Z';
 
-  -- I2C output ports
+  --! I2C output ports
   I2C_SCLK_o <= i2cClock;
   I2C_SDAT_b <= i2cDataTriState;
 
-  -- audio codec input port
+  --! Audio codec input port
   adcDat_sig <= AUD_ADCDAT_i;
 
-  -- audio codec ouput ports
+  --! Audio codec ouput ports
   AUD_ADCLRCK_o <= adcLRCK_sig;
   AUD_DACLRCK_o <= dacLRCK_sig;
   AUD_DACDAT_o <= dacDat_sig;

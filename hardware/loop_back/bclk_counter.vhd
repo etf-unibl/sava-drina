@@ -35,21 +35,25 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file bclk_counter.vhd
+--! @brief This file implements bitCount counter for audio codec.
 
--- bitCount counter for audio codec.  Input is 18MHz clock (master clock) from PLL. Output is
--- 1 period is 12 counts of the master clock => flip the output every 6 counts
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
-
+--! @brief Entity description for bclk_counter.
+--! @details Input is 18MHz clock (master clock) from PLL.
+--! Output is 1 period is 12 counts of the master clock => flip the output every 6 counts.
 entity bclk_counter is
   port(
-    -- active high reset
+    --! Active high reset
     reset_i  : in  std_logic;
     mclk_i   : in  std_logic;
     bclk_o   : out std_logic
   );
 end bclk_counter;
+--! @brief Architecture definition for bclk_counter.
 
 architecture arch of bclk_counter is
 

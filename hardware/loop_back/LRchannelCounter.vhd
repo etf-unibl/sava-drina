@@ -35,23 +35,27 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! @file LRchannelCounter.vhd
+--! @brief This unit implements left and right channel counter for audio codec.
 
--- left channel, right channel counter for audio codec
--- the state changes after 16 falling-edge cycles of the bitClock
-
+--! Use standard library
 library ieee;
+--! Use logic elements
 use ieee.std_logic_1164.all;
-
+--! @brief Entity description for LRchannelCounter.
+--! @details
 entity LRchannelCounter is
   port(
-    -- active high reset
+    --! Active high reset
     reset_i     : in  std_logic;
     bclk_i      : in  std_logic;
-    -- left = '1', right = '0'
+    --! left = '1', right = '0'
     LRchannel_o : out std_logic
   );
 end LRchannelCounter;
-
+--! @brief Architecture definition for LRchannelCounter
+--! @details Architecture implements left channel, right channel counter for audio codec.
+--! The state changes after 16 falling-edge cycles of the bitClock.
 architecture arch of LRchannelCounter is
 
   signal count  : integer range 0 to 15 := 0;
