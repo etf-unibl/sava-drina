@@ -8,7 +8,7 @@
 --
 -- description:
 --
---   This file implements I2S transmitter
+--   This file implements shift_register
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -44,17 +44,17 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity shift_register is
-	port
-	(
+        port
+        (
            clk_i    : in  std_logic;
            reset_i  : in std_logic;
            enable_i : in  std_logic;
            data_i   : in std_logic_vector (23 downto 0);
-	   data_o   : out  std_logic);
+           data_o   : out  std_logic);
 end;
 
 architecture reg_arch of shift_register is
-signal reg_o: std_logic;
+signal reg_o : std_logic;
 
 begin
 shift_reg : process (clk_i, reset_i)
@@ -62,17 +62,17 @@ variable k : integer := 0;
 begin
 
            if reset_i = '1' then
-	     reg_o <= '0';	 
-	  elsif rising_edge(clk_i) then
-	    if enable_i = '1' then
-	      reg_o <= data_i(k);
-              k := k + 1;
+             reg_o <= '0';
+           elsif rising_edge(clk_i) then
+             if enable_i = '1' then
+               reg_o <= data_i(k);
+               k := k + 1;
              if k > 23 then
                   k := 0;
              end if;
             end if;
-            end if;	
-        
+          end if;
+
 end process;
 data_o <= reg_o;
 end;
