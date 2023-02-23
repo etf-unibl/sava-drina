@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file path="clockBuffer_sim/clockBuffer.vho" type="VHDL" />
+ <topLevel name="clockBuffer" />
+ <deviceFamily name="cyclonev" />
+</simPackage>
