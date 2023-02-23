@@ -8,7 +8,7 @@
 --
 -- description:
 --
---   This file implements top module for TX, RX and modulator
+--   This file implements top module for TX, RX, codec configuration and modulator.
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -36,7 +36,6 @@
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 
-
 -------------------------------------------------------
 --!@file
 --!@brief top_level_module
@@ -51,81 +50,97 @@ use ieee.numeric_std.all;
 --!@details Input signals sd_i, ws_i, clk_i, scl_i, sd_o
 --!@details output signal sd_o
 
-
 entity sava_top_level is
   port (
-    sd_i  : in  std_logic;  --! Input serial data signal
-	 ws_i  : in  std_logic;  --! Input word select signal
-    clk_i : in  std_logic;  --! Input clock signal
-    sck_i : in  std_logic;  --! Input i2s clock signal
-    sd_o  : out std_logic); --! Output serial data signal
+    sd_i       : in    std_logic;  --! Input serial data signal
+    ws_i       : in    std_logic;  --! Input word select signal
+    clk_i      : in    std_logic;  --! Input clock signal
+    sck_i      : in    std_logic;  --! Input i2s clock signal
+    sd_o       : out   std_logic;  --! Output serial data signal
+    ws_o       : out   std_logic;  --! Output word select signal
+    reset_i    : in    std_logic;  --! Input reset signal
+    i2c_sclk_o : out   std_logic; --! Output i2c clock signal
+    i2c_sdat_b : inout std_logic; --! Input/Output i2c data signal
+    aud_xck_o  : out   std_logic  --! Codec MCLK signal
+  );
 end sava_top_level;
-
 
 --!@brief  Architecture description of sava_drina_top_level
 --!@details This architecture describe digital processing audio signal
 --!@details With word select signal we choose witch channel we want (left or right)
 
+architecture arch of sava_top_level is
 
+  signal data_left, data_right : std_logic_vector(23 downto 0) := (others => '0');
 
-architecture arch_dps of sava_top_level is
-
-signal data_left, data_right : std_logic_vector(23 downto 0) := (others => '0');
+  component loop_back is
+    port(
+    CLOCK_50_i     : in    std_logic; --! Input 50MHz clock signal
+    reset_i        : in    std_logic; --! Input reset signal
+    I2C_SCLK_o     : out   std_logic; --! Output i2c clock signal
+    I2C_SDAT_b     : inout std_logic; --! Input/Output i2c data signal
+    AUD_XCK_o      : out   std_logic  --! Codec MCLK signal
+    );
+  end component;
 
   component rx_line
     port (
-	   sd_i     : in  std_logic; --! Inpu serial data signal
-		ws_i     : in  std_logic; --! Input word select signal
+      sd_i     : in  std_logic; --! Input serial data signal
+      ws_i     : in  std_logic; --! Input word select signal
       clk_i    : in  std_logic; --! Input clock signal
       sck_i    : in  std_logic; --! Input i2s clock signal
       data_l_o : out std_logic_vector(23 downto 0); --! Output signal for left channel
-      data_r_o : out std_logic_vector(23 downto 0)); --! Output signal for right channel
-    
+      data_r_o : out std_logic_vector(23 downto 0)  --! Output signal for right channel
+    );
   end component;
-  
-  
+
   component tx_line
     port (
-	   ws_i     : in  std_logic; --! Input word select signal
-	   data_left_i : in std_logic_vector(23 downto 0); --! Input buffer for left channel
-      data_right_i : in std_logic_vector(23 downto 0); --! Input buffer for right channel
-      clk_i    : in  std_logic; --! Input clock signal
-      scl_i    : in  std_logic; --! Input i2s clock signal
-      sd_o     : out  std_logic); --! Output serial data signal
+      ws_i         : in  std_logic; --! Input word select signal
+      data_left_i  : in  std_logic_vector(23 downto 0); --! Input buffer for left channel
+      data_right_i : in  std_logic_vector(23 downto 0); --! Input buffer for right channel
+      clk_i        : in  std_logic; --! Input clock signal
+      scl_i        : in  std_logic; --! Input i2s clock signal
+      sd_o         : out std_logic  --! Output serial data signal
+    );
   end component;
-  
-  
+
   component modulation
     port(
-	 
-	 
-	 );
-	 
+
+
+    );
   end component;
-  
-  
-  
-  
-  begin
+
+begin
+  codec_conf : loop_back
+  port map(CLOCK_50_i   => clk_i,
+           reset_i      => reset_i,
+           I2C_SCLK_o   => i2c_sclk_o,
+           I2C_SDAT_b   => i2c_sdat_b,
+           AUD_XCK_o    => aud_xck_o);
+		   
   receiver : rx_line
-  port map(sd_i        => sd_i,
-           ws_i        => ws_i,
-           clk_i       => clk_i,
-           sck_i       => sck_i,
-			  data_left_o => data_left,
-			  data_right_o => data_right);
+  port map(sd_i         => sd_i,
+           ws_i         => ws_i,
+           clk_i        => clk_i,
+           sck_i        => sck_i,
+           data_left_o  => data_left,
+           data_right_o => data_right);
 
   transmitter : tx_line
-  port map(ws_i  => ws_i,
-           clk_i => clk_i,
-           sck_i => sck_i,
-			  data_left_i => data_left,
-			  data_right_i => data_right,
-			  sd_o => sd_o);
-			  
+  port map(ws_i         => ws_i,
+           clk_i        => clk_i,
+           sck_i        => sck_i,
+           data_left_i  => data_left,
+           data_right_i => data_right,
+           sd_o         => sd_o);
+		   
   modulator : modulation
   port map(
-  
-  
-         );
-end arch_dps;
+
+
+  );
+
+  ws_o <= ws_i;
+end arch;
