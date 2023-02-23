@@ -8,7 +8,7 @@
 --
 -- description:
 --
---   This file implements a dual-edge detector circuit using Melay FSM logic.
+--   This file implements a 24-bit counter.
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -49,8 +49,8 @@ use ieee.numeric_std.all;
 --entity with imputs and outputs
 entity counter is
     port (clk_i    : in std_logic;
-	       reset_i  : in std_logic;
-	       enable_i : in std_logic;
+          reset_i  : in std_logic;
+          enable_i : in std_logic;
           count_o  : out std_logic_vector (23 downto 0));
 end counter;
 --architecture
@@ -59,9 +59,9 @@ end counter;
 architecture arch of counter is
 
   signal count_pom : unsigned (23 downto 0);
-  
+
 begin
-  pr1: process (clk_i, reset_i)
+  pr1 : process (clk_i, reset_i)
     begin
         if reset_i = '1' then
           count_pom <= (others => '0');
@@ -73,6 +73,5 @@ begin
           end if;
         end if;
     end process pr1;
-	 
  count_o <= std_logic_vector(count_pom);
  end arch;
