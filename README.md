@@ -10,6 +10,11 @@ U okviru projektnog zadatka bilo je potrebno implementirati obradu audio odmjera
 - DE1-SoC ploča (FPGA, audio CODEC WM8731, periferije,..)
 - Raspberry Pi 4
 
+**Korišteni softverski resursi**
+
+- _Quartus Prime_ alat i VHDL programski jezik
+- _Python_ i _C_ programski jezici (za parametrizaciju CODEC-a preko RPi)
+
 **Implementirane funkcionalnosti**
 
 _Implementirano je:_
@@ -21,3 +26,7 @@ _Implementirano je:_
 _Nije završeno:_
 - Parametrizacija audio CODEC-a korištenjem RPi
 - Modulacija ulaznog signala 
+
+_VUnit testovi:_
+
+_VUnit_ testovima pokrivena je većina implementiranih funkcionalnosti. Pojedine funkcionalnosti su testirane standardnim _testbench_-evima.
